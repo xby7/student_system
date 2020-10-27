@@ -1,0 +1,8 @@
+<html>
+<head>
+    <title>btl模板文件</title>
+</head>
+<body>
+${msg}
+</body>
+</html>
