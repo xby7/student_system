@@ -1,5 +1,7 @@
 package com.jxd.student_information.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 /**
  * <p>
  * 
@@ -10,6 +12,7 @@ package com.jxd.student_information.model;
  */
 public class Userlogin {
 
+    @TableId
     private Integer user_id;
 
     private String password;
