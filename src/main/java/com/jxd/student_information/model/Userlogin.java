@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 public class Userlogin {
-
+    //告诉mp表的主键是什么
     @TableId
     private Integer userId;
     private String password;

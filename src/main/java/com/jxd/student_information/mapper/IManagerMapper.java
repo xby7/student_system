@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  Mapper 接口
@@ -16,6 +19,7 @@ import java.util.Map;
  * @since 2020-10-28
  */
 public interface IManagerMapper extends BaseMapper<Manager> {
+    List<Map<String,Object>> selectAllstu();
 
     List<Map<String,Object>> selectAllManagerWithDept_name(@Param("manager_name") String manager_name);
 
