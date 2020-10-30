@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IManagerMapper">
+    <select id="selectAllManagerWithDept_name" resultType="java.util.HashMap">
+        select m.manager_id,m.manager_name,d.dept_name from manager m left join dept d
+        on m.dept_no = d.dept_no
+        <if test="manager_name != null and manager_name != ''">
+            where m.manager_name like concat('%',#{manager_name},'%')
+        </if>
+    </select>
 
+    <select id="selectAllManagerWithDept_nameByPage" resultType="java.util.HashMap">
+        select m.manager_id,m.manager_name,d.dept_name from manager m left join dept d
+        on m.dept_no = d.dept_no
+        <if test="manager_name != null and manager_name != ''">
+            where m.manager_name like concat('%',#{manager_name},'%')
+        </if>
+        limit #{pageStart},#{pageSize}
+    </select>
 </mapper>

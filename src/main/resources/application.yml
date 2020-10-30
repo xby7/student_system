@@ -12,5 +12,5 @@ spring:
 
 #注册mapper映射文件
 mybatis-plus:
-  mapper-locations: classpath*:com/jxd/student_information/dao/mapping/*.xml
+  mapper-locations: classpath*:com/jxd/student_information/mapper/mapping/*.xml
   type-aliases-package: com.jxd.student_information.model  #设置别名

@@ -1,40 +1,21 @@
 package com.jxd.student_information.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author xby
- * @since 2020-10-28
+ * @since 2020-10-30
  */
+@Data
 public class Teacher {
 
-    private Integer teacher_id;
+    @TableId
+    private Integer teacherId;
+    private String teacherName;
 
-    private String teacher_name;
-
-    public Teacher() {
-    }
-
-    public Teacher(Integer teacher_id, String teacher_name) {
-        this.teacher_id = teacher_id;
-        this.teacher_name = teacher_name;
-    }
-
-    public Integer getTeacher_id() {
-        return teacher_id;
-    }
-
-    public void setTeacher_id(Integer teacher_id) {
-        this.teacher_id = teacher_id;
-    }
-
-    public String getTeacher_name() {
-        return teacher_name;
-    }
-
-    public void setTeacher_name(String teacher_name) {
-        this.teacher_name = teacher_name;
-    }
 }

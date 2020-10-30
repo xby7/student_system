@@ -4,7 +4,11 @@ import com.jxd.student_information.mapper.IManagerMapper;
 import com.jxd.student_information.model.Manager;
 import com.jxd.student_information.service.IManagerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,5 +20,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> implements IManagerService {
+
+    @Autowired
+    IManagerMapper managerMapper;
+
+    @Override
+    public List<Map<String, Object>> getAllManagerWithDept_name(String manager_name) {
+        return managerMapper.selectAllManagerWithDept_name(manager_name);
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize,int currentPage,String manager_name) {
+        int pageStart = (currentPage-1)*pageSize;
+        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart,pageSize,manager_name);
+    }
+
 
 }
