@@ -58,6 +58,11 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <!--set、get等方法免写，注解@Data-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!--代码生成器依赖-->
         <!--<dependency>
             <groupId>com.baomidou</groupId>
@@ -70,6 +75,13 @@
             <artifactId>velocity-engine-core</artifactId>
             <version>2.2</version>
         </dependency>-->
+        <!--模板引擎freemarker依赖-->
+        <!--<dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
+        </dependency>-->
     </dependencies>
+
 
 </project>

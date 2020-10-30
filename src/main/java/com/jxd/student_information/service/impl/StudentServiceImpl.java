@@ -6,6 +6,9 @@ import com.jxd.student_information.service.IStudentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +19,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StudentServiceImpl extends ServiceImpl<IStudentMapper, Student> implements IStudentService {
-
+    List<Map<String, Object>> selectAllstu();
 }

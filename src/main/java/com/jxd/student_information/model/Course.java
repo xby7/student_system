@@ -1,39 +1,21 @@
 package com.jxd.student_information.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author xby
- * @since 2020-10-28
+ * @since 2020-10-30
  */
-public class Course {
+@Data
+public class Course{
 
-    private Integer course_id;
-    private String course_name;
+    @TableId
+    private Integer courseId;
+    private String courseName;
 
-    public Course() {
-    }
-
-    public Course(Integer course_id, String course_name) {
-        this.course_id = course_id;
-        this.course_name = course_name;
-    }
-
-    public Integer getCourse_id() {
-        return course_id;
-    }
-
-    public void setCourse_id(Integer course_id) {
-        this.course_id = course_id;
-    }
-
-    public String getCourse_name() {
-        return course_name;
-    }
-
-    public void setCourse_name(String course_name) {
-        this.course_name = course_name;
-    }
 }
