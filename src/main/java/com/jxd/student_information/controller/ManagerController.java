@@ -35,4 +35,15 @@ public class ManagerController {
         return managerService.getAllManagerWithDept_nameByPage(pageSize, currentPage, manager_name);
     }
 
+    @RequestMapping("/addManager")
+    @ResponseBody
+    public String addManager(String managerName,String deptName){
+        boolean result =  managerService.addManager(managerName,deptName);
+        if (result == true){
+            return "添加成功";
+        }else {
+            return "服务器相应失败失败";
+        }
+    }
+
 }

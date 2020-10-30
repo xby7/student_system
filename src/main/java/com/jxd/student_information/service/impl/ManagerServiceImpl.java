@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author xby
@@ -30,9 +30,14 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
     }
 
     @Override
-    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize,int currentPage,String manager_name) {
-        int pageStart = (currentPage-1)*pageSize;
-        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart,pageSize,manager_name);
+    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String manager_name) {
+        int pageStart = (currentPage - 1) * pageSize;
+        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart, pageSize, manager_name);
+    }
+
+    @Override
+    public boolean addManager(String managerName, String deptName) {
+        return managerMapper.insertManager(managerName, deptName);
     }
 
 

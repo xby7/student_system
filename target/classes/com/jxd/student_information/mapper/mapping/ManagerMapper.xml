@@ -17,4 +17,8 @@
         </if>
         limit #{pageStart},#{pageSize}
     </select>
+
+    <insert id="insertManager">
+        insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}))
+    </insert>
 </mapper>

@@ -20,4 +20,5 @@ public interface IManagerService extends IService<Manager> {
 
     List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String manager_name);
 
+    boolean addManager(String managerName, String deptNo);
 }
