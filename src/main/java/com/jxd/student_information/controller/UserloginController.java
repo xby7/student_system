@@ -23,11 +23,12 @@ public class UserloginController {
     private IUserloginService userloginService;
 
 
-    @RequestMapping("/updateUserPWD/{user_id}/{newPWD}")
+    @RequestMapping("/updateUserPWD/{user_id}/{newpwd}")
     @ResponseBody
-    public String updateUserPWD(@PathVariable("user_id") int user_id,@PathVariable("newPwd") String newPWd){
+    public String updateUserPWD(@PathVariable("user_id") String user_id,@PathVariable("newpwd") String newPWd){
+        int user_id_int = Integer.parseInt(user_id);
         Userlogin userlogin = new Userlogin();
-        userlogin.setUser_id(user_id);
+        userlogin.setUser_id(user_id_int);
         userlogin.setPassword(newPWd);
         boolean flag = userloginService.updateById(userlogin);
         if (flag){
@@ -36,5 +37,6 @@ public class UserloginController {
             return "error";
         }
     }
+
 
 }

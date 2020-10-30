@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @since 2020-10-28
  */
 public class Userlogin {
-
+    //告诉mp表的主键是什么
     @TableId
     private Integer user_id;
 
