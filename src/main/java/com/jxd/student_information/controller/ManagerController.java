@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author xby
@@ -31,18 +31,29 @@ public class ManagerController {
 
     @RequestMapping("/getAllManagerByPage")
     @ResponseBody
-    public List<Map<String, Object>> getAllManagerBypage(int pageSize, int currentPage, String managerName) {
+    public List<Map<String, Object>> getAllManagerByPage(int pageSize, int currentPage, String managerName) {
         return managerService.getAllManagerWithDept_nameByPage(pageSize, currentPage, managerName);
     }
 
     @RequestMapping("/addManager")
     @ResponseBody
-    public String addManager(String managerName,String deptName){
-        boolean result =  managerService.addManager(managerName,deptName);
-        if (result == true){
+    public String addManager(String managerName, String deptName) {
+        boolean result = managerService.addManager(managerName, deptName);
+        if (result == true) {
             return "添加成功";
-        }else {
-            return "服务器相应失败失败";
+        } else {
+            return "服务器响应失败";
+        }
+    }
+
+    @RequestMapping("/deleteManager")
+    @ResponseBody
+    public String deleteManagerById(int managerId) {
+        boolean result = managerService.removeById(managerId);
+        if (result == true) {
+            return "删除成功";
+        } else {
+            return "服务器响应失败";
         }
     }
 
