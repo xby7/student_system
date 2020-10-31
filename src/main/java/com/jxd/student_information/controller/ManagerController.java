@@ -25,14 +25,14 @@ public class ManagerController {
 
     @RequestMapping("/getAllManager")
     @ResponseBody
-    public List<Map<String, Object>> getAllManager(String manager_name) {
-        return managerService.getAllManagerWithDept_name(manager_name);
+    public List<Map<String, Object>> getAllManager(String managerName) {
+        return managerService.getAllManagerWithDept_name(managerName);
     }
 
     @RequestMapping("/getAllManagerByPage")
     @ResponseBody
-    public List<Map<String, Object>> getAllManagerBypage(int pageSize, int currentPage, String manager_name) {
-        return managerService.getAllManagerWithDept_nameByPage(pageSize, currentPage, manager_name);
+    public List<Map<String, Object>> getAllManagerBypage(int pageSize, int currentPage, String managerName) {
+        return managerService.getAllManagerWithDept_nameByPage(pageSize, currentPage, managerName);
     }
 
     @RequestMapping("/addManager")

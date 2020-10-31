@@ -25,14 +25,14 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
     IManagerMapper managerMapper;
 
     @Override
-    public List<Map<String, Object>> getAllManagerWithDept_name(String manager_name) {
-        return managerMapper.selectAllManagerWithDept_name(manager_name);
+    public List<Map<String, Object>> getAllManagerWithDept_name(String managerName) {
+        return managerMapper.selectAllManagerWithDept_name(managerName);
     }
 
     @Override
-    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String manager_name) {
+    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String managerName) {
         int pageStart = (currentPage - 1) * pageSize;
-        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart, pageSize, manager_name);
+        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart, pageSize, managerName);
     }
 
     @Override

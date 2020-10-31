@@ -20,11 +20,11 @@ import java.util.Map;
  */
 public interface IManagerMapper extends BaseMapper<Manager> {
 
-    List<Map<String, Object>> selectAllManagerWithDept_name(@Param("manager_name") String manager_name);
+    List<Map<String, Object>> selectAllManagerWithDept_name(@Param("managerName") String managerName);
 
     List<Map<String, Object>> selectAllManagerWithDept_nameByPage(@Param("pageStart") int pageStart,
                                                                   @Param("pageSize") int pageSize,
-                                                                  @Param("manager_name") String manager_name);
+                                                                  @Param("managerName") String managerName);
 
     boolean insertManager(@Param("managerName") String managerName, @Param("deptName") String deptName);
 }
