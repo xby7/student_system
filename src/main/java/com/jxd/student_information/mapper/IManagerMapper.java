@@ -27,4 +27,7 @@ public interface IManagerMapper extends BaseMapper<Manager> {
                                                                   @Param("managerName") String managerName);
 
     boolean insertManager(@Param("managerName") String managerName, @Param("deptName") String deptName);
+
+    boolean updateManagerById(@Param("managerId") int managerId, @Param("managerName") String managerName,
+                              @Param("deptName") String deptName);
 }

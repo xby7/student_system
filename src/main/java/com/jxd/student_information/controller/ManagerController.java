@@ -1,11 +1,15 @@
 package com.jxd.student_information.controller;
 
+import com.jxd.student_information.model.Dept;
+import com.jxd.student_information.model.Manager;
+import com.jxd.student_information.service.IDeptService;
 import com.jxd.student_information.service.IManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +26,9 @@ public class ManagerController {
 
     @Autowired
     IManagerService managerService;
+
+    @Autowired
+    IDeptService deptService;
 
     @RequestMapping("/getAllManager")
     @ResponseBody
@@ -57,4 +64,26 @@ public class ManagerController {
         }
     }
 
+    @RequestMapping("/getManagerById")
+    @ResponseBody
+    public Map<String, Object> getManagerById(int managerId) {
+        Manager manager = managerService.getById(managerId);
+        Dept dept = deptService.getById(manager.getDeptNo());
+        Map<String, Object> map = new HashMap<>();
+        map.put("managerId", manager.getManagerId());
+        map.put("managerName", manager.getManagerName());
+        map.put("deptName", dept.getDeptName());
+        return map;
+    }
+
+    @RequestMapping("/updateManagerById")
+    @ResponseBody
+    public String updateManagerById(int managerId, String managerName, String deptName) {
+        boolean result = managerService.updateManagerById(managerId, managerName, deptName);
+        if (result == true) {
+            return "修改成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
 }

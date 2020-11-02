@@ -40,5 +40,9 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
         return managerMapper.insertManager(managerName, deptName);
     }
 
+    @Override
+    public boolean updateManagerById(int managerId, String managerName, String deptName) {
+        return managerMapper.updateManagerById(managerId,managerName,deptName);
+    }
 
 }

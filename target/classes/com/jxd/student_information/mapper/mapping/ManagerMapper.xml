@@ -15,10 +15,16 @@
         <if test="managerName != null and managerName != ''">
             where m.manager_name like concat('%',#{managerName},'%')
         </if>
+        order by m.manager_id
         limit #{pageStart},#{pageSize}
     </select>
 
     <insert id="insertManager">
         insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}))
     </insert>
+
+    <update id="updateManagerById">
+        update manager set manager_name = #{managerName},dept_no = (select dept_no from dept where dept_name = #{deptName})
+        where manager_id = #{managerId}
+    </update>
 </mapper>
