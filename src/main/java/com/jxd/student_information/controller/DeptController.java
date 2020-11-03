@@ -36,5 +36,56 @@ public class DeptController {
         }
         return dept_names;
     }
+
+    @RequestMapping("/addDept")
+    @ResponseBody
+    public String addDept(String deptName) {
+        boolean result = deptService.addDept(deptName);
+        if (result == true) {
+            return "添加成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
+
+    @RequestMapping("/getAllDept")
+    @ResponseBody
+    public List<Dept> getAllDept(){
+        return deptService.list();
+    }
+
+    @RequestMapping("/getAllDeptByPage")
+    @ResponseBody
+    public List<Dept> getAllDeptByPage(int pageSize,int currentPage){
+        return deptService.getAllDeptByPage(pageSize,currentPage);
+    }
+
+    @RequestMapping("/deleteDept")
+    @ResponseBody
+    public String deleteDept(int deptNo){
+        boolean result = deptService.removeById(deptNo);
+        if (result == true) {
+            return "删除成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
+
+    @RequestMapping("/getDeptById")
+    @ResponseBody
+    public Dept getDeptById(int deptNo){
+        return deptService.getById(deptNo);
+    }
+
+    @RequestMapping("/updateDeptById")
+    @ResponseBody
+    public String updateDeptById(int deptNo, String deptName){
+        boolean result = deptService.updateDeptById(deptNo,deptName);
+        if (result == true) {
+            return "更新成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
 }
 

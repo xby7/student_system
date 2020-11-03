@@ -12,18 +12,22 @@ import java.util.Map;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author xby
  * @since 2020-10-28
  */
 public interface IManagerMapper extends BaseMapper<Manager> {
-    List<Map<String,Object>> selectAllstu();
 
-    List<Map<String,Object>> selectAllManagerWithDept_name(@Param("manager_name") String manager_name);
+    List<Map<String, Object>> selectAllManagerWithDept_name(@Param("managerName") String managerName);
 
-    List<Map<String,Object>> selectAllManagerWithDept_nameByPage(@Param("pageStart") int pageStart,
-                                                                 @Param("pageSize") int pageSize,
-                                                                 @Param("manager_name") String manager_name);
+    List<Map<String, Object>> selectAllManagerWithDept_nameByPage(@Param("pageStart") int pageStart,
+                                                                  @Param("pageSize") int pageSize,
+                                                                  @Param("managerName") String managerName);
+
+    boolean insertManager(@Param("managerName") String managerName, @Param("deptName") String deptName);
+
+    boolean updateManagerById(@Param("managerId") int managerId, @Param("managerName") String managerName,
+                              @Param("deptName") String deptName);
 }

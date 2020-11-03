@@ -4,17 +4,27 @@
     <select id="selectAllManagerWithDept_name" resultType="java.util.HashMap">
         select m.manager_id,m.manager_name,d.dept_name from manager m left join dept d
         on m.dept_no = d.dept_no
-        <if test="manager_name != null and manager_name != ''">
-            where m.manager_name like concat('%',#{manager_name},'%')
+        <if test="managerName != null and managerName != ''">
+            where m.manager_name like concat('%',#{managerName},'%')
         </if>
     </select>
 
     <select id="selectAllManagerWithDept_nameByPage" resultType="java.util.HashMap">
         select m.manager_id,m.manager_name,d.dept_name from manager m left join dept d
         on m.dept_no = d.dept_no
-        <if test="manager_name != null and manager_name != ''">
-            where m.manager_name like concat('%',#{manager_name},'%')
+        <if test="managerName != null and managerName != ''">
+            where m.manager_name like concat('%',#{managerName},'%')
         </if>
+        order by m.manager_id
         limit #{pageStart},#{pageSize}
     </select>
+
+    <insert id="insertManager">
+        insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}))
+    </insert>
+
+    <update id="updateManagerById">
+        update manager set manager_name = #{managerName},dept_no = (select dept_no from dept where dept_name = #{deptName})
+        where manager_id = #{managerId}
+    </update>
 </mapper>
