@@ -35,4 +35,25 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
         int pageIndex = (curPage - 1) * pageSize;
         return teacherMapper.selectAllStuBypage(student_name,teacher_id,pageIndex,pageSize);
     }
+
+    @Override
+    public boolean addTeacher(String teacherName) {
+        return teacherMapper.insertTeacher(teacherName);
+    }
+
+    @Override
+    public List<Teacher> getAllTeacher(String teacherName) {
+        return teacherMapper.selectAllTeacher(teacherName);
+    }
+
+    @Override
+    public List<Teacher> getAllTeacherByPage(int pageSize, int currentPage,String teacherName) {
+        int pageStart = (currentPage-1)*pageSize;
+        return teacherMapper.selectAllTeacherByPage(pageStart,pageSize,teacherName);
+    }
+
+    @Override
+    public boolean updateTeacherById(int teacherId, String teacherName) {
+        return teacherMapper.updateTeacherById(teacherId,teacherName);
+    }
 }

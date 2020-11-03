@@ -22,4 +22,14 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
                                                 @Param("teacher_id") int teacher_id,
                                                 @Param("pageIndex") int pageIndex,
                                                 @Param("pageSize") int pageSize);
+
+    boolean insertTeacher(@Param("teacherName") String teacherName);
+
+    List<Teacher> selectAllTeacher(@Param("teacherName") String teacherName);
+
+    List<Teacher> selectAllTeacherByPage(@Param("pageStart") int pageStart,
+                                         @Param("pageSize") int pageSize,
+                                         @Param("teacherName") String teacherName);
+
+    boolean updateTeacherById(@Param("teacherId") int teacherId, @Param("teacherName") String teacherName);
 }
