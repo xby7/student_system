@@ -37,6 +37,18 @@ public class DeptController {
         return dept_names;
     }
 
+    @RequestMapping("/getAllDept")
+    @ResponseBody
+    public List<Dept> getAllDept(String deptName){
+        return deptService.getAllDept(deptName);
+    }
+
+    @RequestMapping("/getAllDeptByPage")
+    @ResponseBody
+    public List<Dept> getAllDeptByPage(int pageSize,int currentPage,String deptName){
+        return deptService.getAllDeptByPage(pageSize,currentPage,deptName);
+    }
+
     @RequestMapping("/addDept")
     @ResponseBody
     public String addDept(String deptName) {
@@ -46,18 +58,6 @@ public class DeptController {
         } else {
             return "服务器响应失败";
         }
-    }
-
-    @RequestMapping("/getAllDept")
-    @ResponseBody
-    public List<Dept> getAllDept(){
-        return deptService.list();
-    }
-
-    @RequestMapping("/getAllDeptByPage")
-    @ResponseBody
-    public List<Dept> getAllDeptByPage(int pageSize,int currentPage){
-        return deptService.getAllDeptByPage(pageSize,currentPage);
     }
 
     @RequestMapping("/deleteDept")

@@ -6,8 +6,18 @@
         insert into dept (dept_name) values (#{deptName})
     </insert>
 
+    <select id="selectAllDept" resultType="Dept">
+        select dept_no,dept_name from dept
+        <if test="deptName != null and deptName != ''">
+            where dept_name like concat('%',#{deptName},'%')
+        </if>
+    </select>
+
     <select id="selectAllDeptByPage" resultType="Dept">
         select dept_no,dept_name from dept
+        <if test="deptName != null and deptName != ''">
+            where dept_name like concat('%',#{deptName},'%')
+        </if>
         order by dept_no
         limit #{pageStart},#{pageSize}
     </select>

@@ -18,7 +18,12 @@ public interface IDeptMapper extends BaseMapper<Dept> {
 
     boolean insertDept(@Param("deptName") String deptName);
 
-    List<Dept> selectAllDeptByPage(@Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+
+    List<Dept> selectAllDept(@Param("deptName") String deptName);
+
+    List<Dept> selectAllDeptByPage(@Param("pageStart") int pageStart,
+                                   @Param("pageSize") int pageSize,
+                                   @Param("deptName") String deptName);
 
     boolean updateDeptById(@Param("deptNo") int deptNo, @Param("deptName") String deptName);
 }

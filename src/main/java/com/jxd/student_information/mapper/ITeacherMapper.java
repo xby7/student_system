@@ -28,4 +28,11 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
     //获取动态的行转列SQL语句
     List<String> getSequence();
 
+    boolean insertTeacher(@Param("teacherName") String teacherName);
+
+    List<Teacher> selectAllTeacher(@Param("teacherName") String teacherName);
+
+    List<Teacher> selectAllTeacherByPage(@Param("pageStart") int pageStart,
+                                         @Param("pageSize") int pageSize,
+                                         @Param("teacherName") String teacherName);
 }

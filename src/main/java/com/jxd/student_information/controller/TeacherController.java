@@ -1,8 +1,8 @@
 package com.jxd.student_information.controller;
 
+import com.jxd.student_information.model.Teacher;
 import com.jxd.student_information.service.ICourseService;
 import com.jxd.student_information.service.ITeacherService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +56,57 @@ public class TeacherController {
         map.put("tableNameList",tableColumnList);
 
         return map;
+    }
+
+    @RequestMapping("/getAllTeacher")
+    @ResponseBody
+    public List<Teacher> getAllTeacher(String teacherName) {
+        return teacherService.getAllTeacher(teacherName);
+    }
+
+    @RequestMapping("/getAllTeacherByPage")
+    @ResponseBody
+    public List<Teacher> getAllTeacherByPage(int pageSize, int currentPage, String teacherName) {
+        return teacherService.getAllTeacherByPage(pageSize, currentPage, teacherName);
+    }
+
+    @RequestMapping("/addTeacher")
+    @ResponseBody
+    public String addTeacher(String teacherName) {
+        boolean result = teacherService.addTeacher(teacherName);
+        if (result == true) {
+            return "添加成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
+
+    @RequestMapping("/deleteTeacher")
+    @ResponseBody
+    public String deleteTeacher(int teacherId) {
+        boolean result = teacherService.removeById(teacherId);
+        if (result == true) {
+            return "删除成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
+
+    @RequestMapping("/getTeacherById")
+    @ResponseBody
+    public Teacher getTeacherById(int teacherId) {
+        return teacherService.getById(teacherId);
+    }
+
+    @RequestMapping("/updateTeacherById")
+    @ResponseBody
+    public String updateTeacherById(int teacherId, String teacherName) {
+        boolean result = teacherService.updateTeacherById(teacherId, teacherName);
+        if (result == true) {
+            return "更新成功";
+        } else {
+            return "服务器响应失败";
+        }
     }
 
 

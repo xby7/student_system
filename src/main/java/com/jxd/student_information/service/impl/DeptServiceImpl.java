@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author xby
@@ -29,14 +29,19 @@ public class DeptServiceImpl extends ServiceImpl<IDeptMapper, Dept> implements I
     }
 
     @Override
-    public List<Dept> getAllDeptByPage(int pageSize, int currentPage) {
-        int pageStart = (currentPage-1)*pageSize;
-        return deptMapper.selectAllDeptByPage(pageStart,pageSize);
+    public List<Dept> getAllDept(String deptName) {
+        return deptMapper.selectAllDept(deptName);
+    }
+
+    @Override
+    public List<Dept> getAllDeptByPage(int pageSize, int currentPage, String deptName) {
+        int pageStart = (currentPage - 1) * pageSize;
+        return deptMapper.selectAllDeptByPage(pageStart, pageSize, deptName);
     }
 
     @Override
     public boolean updateDeptById(int deptNo, String deptName) {
-        return deptMapper.updateDeptById(deptNo,deptName);
+        return deptMapper.updateDeptById(deptNo, deptName);
     }
 
 

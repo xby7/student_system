@@ -39,4 +39,28 @@
         course
     </select>
 
+
+    <insert id="insertTeacher">
+        insert into teacher (teacher_name) values (#{teacherName})
+    </insert>
+
+    <select id="selectAllTeacher" resultType="Teacher">
+    select teacher_id,teacher_name from teacher
+    <if test="teacherName != null and teacherName != ''">
+        where teacher_name like concat('%',#{teacherName},'%')
+    </if>
+    </select>
+
+    <select id="selectAllTeacherByPage" resultType="Teacher">
+        select teacher_id,teacher_name from teacher
+        <if test="teacherName != null and teacherName != ''">
+            where teacher_name like concat('%',#{teacherName},'%')
+        </if>
+        order by teacher_id
+        limit #{pageStart},#{pageSize}
+    </select>
+
+    <update id="updateTeacherById">
+        update teacher set teacher_name = #{teacherName} where teacher_id = #{teacherId}
+    </update>
 </mapper>

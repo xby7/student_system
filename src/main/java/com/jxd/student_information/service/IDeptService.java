@@ -17,7 +17,9 @@ public interface IDeptService extends IService<Dept> {
 
     boolean addDept(String deptName);
 
-    List<Dept> getAllDeptByPage(int pageSize,int currentPage);
+    List<Dept> getAllDept(String deptName);
+
+    List<Dept> getAllDeptByPage(int pageSize,int currentPage,String deptName);
 
     boolean updateDeptById(int deptNo, String deptName);
 }
