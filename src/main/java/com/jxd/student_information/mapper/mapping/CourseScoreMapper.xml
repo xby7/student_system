@@ -23,7 +23,7 @@
     </update>
 
     <select id="selectScoreWithStudentId" resultType="CourseScore">
-        SELECT score,course_id,student_id  FROM course_score
+        SELECT score,course_id,student_id,score_id FROM course_score
         WHERE student_id = #{studentId}
     </select>
 

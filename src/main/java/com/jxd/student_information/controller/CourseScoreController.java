@@ -30,14 +30,25 @@ public class CourseScoreController {
 
     @RequestMapping("/updateStuScoreWithTeacher")
     @ResponseBody
-    public String updateStuScoreWithTeacher(List<CourseScore> scoreList) {
+    public String updateStuScoreWithTeacher(@RequestBody List<CourseScore> courseScore) {
+        //System.out.println(score);
+       /* List<CourseScore> scoreList = new ArrayList<>();
+        CourseScore courseScore = null;
+        courseScore.setStudentId(studentId);
+        for (int i = 0; i < 6; i++) {
+            courseScore = new CourseScore();
+            courseScore.setScore(score);
+            courseScore.setCourseId(courseId);
+            scoreList.add(courseScore);
+        }
 
         boolean flag = courseScoreService.updateStuScoreWithTeacher(scoreList);
         if (flag) {
             return "success";
         } else {
             return "error";
-        }
+        }*/
+       return null;
     }
 
     @RequestMapping("/getScoreByStudentId")
