@@ -36,6 +36,7 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
     List<Teacher> selectAllTeacherByPage(@Param("pageStart") int pageStart,
                                          @Param("pageSize") int pageSize,
                                          @Param("teacherName") String teacherName);
+
     boolean updateTeacherById(int teacherId,String teacherName);
 }
 
