@@ -16,7 +16,9 @@ import java.util.Map;
  * @since 2020-10-28
  */
 public interface ITeacherService extends IService<Teacher> {
-    //List<Map<String,Object>> getAllStuWithTeacher(String student_name,int teacher_id);
+    List<Map<String,Object>> getAllStuTotalsWithTeacher(String student_name,int teacher_id);
 
     List<Map<String,Object>> getAllStuWithTeacherByPage(String student_name,int teacher_id,int curPage,int pageSize);
+
+
 }

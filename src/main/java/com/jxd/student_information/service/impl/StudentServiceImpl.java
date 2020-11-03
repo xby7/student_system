@@ -19,5 +19,4 @@ import java.util.Map;
  */
 @Service
 public class StudentServiceImpl extends ServiceImpl<IStudentMapper, Student> implements IStudentService {
-    List<Map<String, Object>> selectAllstu();
 }

@@ -28,7 +28,7 @@ public class UserloginController {
     public String updateUserPWD(@PathVariable("user_id") String user_id,@PathVariable("newpwd") String newPWd){
         int user_id_int = Integer.parseInt(user_id);
         Userlogin userlogin = new Userlogin();
-        userlogin.setUser_id(user_id_int);
+        userlogin.setUserId(user_id_int);
         userlogin.setPassword(newPWd);
         boolean flag = userloginService.updateById(userlogin);
         if (flag){

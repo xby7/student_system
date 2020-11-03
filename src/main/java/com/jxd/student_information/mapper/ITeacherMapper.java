@@ -16,10 +16,16 @@ import java.util.Map;
  * @since 2020-10-28
  */
 public interface ITeacherMapper extends BaseMapper<Teacher> {
-    //List<Map<String,Object>> selectAllStu(@Param("student_name") String student_name,@Param("teacher_id") int teacher_id);
-
-    List<Map<String,Object>> selectAllStuBypage(@Param("student_name") String student_name,
-                                                @Param("teacher_id") int teacher_id,
+    //获取总数
+    List<Map<String,Object>> selectAllStuTotalsWithTeacher(@Param("student_name") String student_name,
+                                          @Param("teacher_id") int teacher_id,String sql);
+    //获取分页后的数据
+    List<Map<String,Object>> selectAllStuBypageWithTeacher(@Param("student_name") String student_name,
+                                                @Param("teacher_id") int teacher_id,String sql,
                                                 @Param("pageIndex") int pageIndex,
                                                 @Param("pageSize") int pageSize);
+
+    //获取动态的行转列SQL语句
+    List<String> getSequence();
+
 }

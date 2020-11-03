@@ -2,4 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.ICourseScoreMapper">
 
+    <update id="updateStuScoreWithTeacher" parameterType="java.util.List">
+        update course_score
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="score = case" suffix="end,">
+                <foreach collection="list" item="CourseScore" index="index">
+                    <if test="CourseScore.courseId != null">
+                        when course_id = #{CourseScore.courseId} then #{CourseScore.score}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where course_id in
+        <foreach collection="list" item="CourseScore" index="index" open="(" separator="," close=")">
+            #{CourseScore.courseId}
+        </foreach>
+        <foreach collection="list" item="CourseScore" index="index">
+            and student_id = #{CourseScore.studentId}
+        </foreach>
+    </update>
+
+    <select id="selectScoreWithStudentId" resultType="CourseScore">
+        SELECT score,course_id,student_id  FROM course_score
+        WHERE student_id = #{studentId}
+    </select>
+
 </mapper>
