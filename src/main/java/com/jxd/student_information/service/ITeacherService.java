@@ -20,6 +20,8 @@ public interface ITeacherService extends IService<Teacher> {
 
     List<Map<String,Object>> getAllStuWithTeacherByPage(String student_name,int teacher_id,int curPage,int pageSize);
 
+    List<Map<String,Object>> getAllStuTotalsWithTeacher(String student_name, int teacher_id);
+
     boolean addTeacher(String teacherName);
 
     List<Teacher> getAllTeacher(String teacherName);

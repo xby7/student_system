@@ -19,6 +19,7 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
     //获取总数
     List<Map<String,Object>> selectAllStuTotalsWithTeacher(@Param("student_name") String student_name,
                                           @Param("teacher_id") int teacher_id,String sql);
+
     //获取分页后的数据
     List<Map<String,Object>> selectAllStuBypageWithTeacher(@Param("student_name") String student_name,
                                                 @Param("teacher_id") int teacher_id,String sql,
@@ -35,4 +36,6 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
     List<Teacher> selectAllTeacherByPage(@Param("pageStart") int pageStart,
                                          @Param("pageSize") int pageSize,
                                          @Param("teacherName") String teacherName);
+    boolean updateTeacherById(int teacherId,String teacherName);
 }
+
