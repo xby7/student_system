@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,18 +43,18 @@ public class TeacherController {
 
         Map<String, Object> map = new HashMap<>();
 
-        List<Map<String,Object>> totals = teacherService.getAllStuTotalsWithTeacher(student_name, Integer.parseInt(teacher_id));
+        List<Map<String, Object>> totals = teacherService.getAllStuTotalsWithTeacher(student_name, Integer.parseInt(teacher_id));
 
         List<Map<String, Object>> students = teacherService.getAllStuWithTeacherByPage(student_name,
                 Integer.parseInt(teacher_id),
                 Integer.parseInt(curPage),
                 Integer.parseInt(pageSize));
 
-        List<Map<String,Object>> tableColumnList =courseService.getAllCourseName();
+        List<Map<String, Object>> tableColumnList = courseService.getAllCourseName();
 
         map.put("students", students);
         map.put("total", totals);
-        map.put("tableNameList",tableColumnList);
+        map.put("tableNameList", tableColumnList);
 
         return map;
     }
@@ -107,6 +108,18 @@ public class TeacherController {
         } else {
             return "服务器响应失败";
         }
+    }
+
+    @RequestMapping("/getAllTeacher_name")
+    @ResponseBody
+    public List<String> getAllTeacher_name() {
+        List<String> teacher_names = new ArrayList<>();
+        List<Teacher> teachers = teacherService.list();
+
+        for (Teacher teacher : teachers) {
+            teacher_names.add(teacher.getTeacherId() + " " + teacher.getTeacherName());
+        }
+        return teacher_names;
     }
 
 
