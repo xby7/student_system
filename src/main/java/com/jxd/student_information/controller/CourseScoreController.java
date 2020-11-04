@@ -28,10 +28,10 @@ public class CourseScoreController {
     @Autowired
     private ICourseScoreService courseScoreService;
 
+    /*教师对学生的打分*/
     @RequestMapping("/updateStuScoreWithTeacher")
     @ResponseBody
-    public String updateStuScoreWithTeacher(@RequestBody(required=false) List<CourseScore> courseScore) {
-
+    public String updateStuScoreWithTeacher(@RequestBody() List<CourseScore> courseScore) {
 
         boolean flag = courseScoreService.updateStuScoreWithTeacher(courseScore);
         if (flag) {
@@ -41,6 +41,7 @@ public class CourseScoreController {
         }
     }
 
+    /*获取学生的成绩信息*/
     @RequestMapping("/getScoreByStudentId")
     @ResponseBody
     public Map<String, Object> getScoreByStudentId(int studentId){

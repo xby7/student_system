@@ -5,10 +5,10 @@
        ${sql}
         <where>
             <if test="teacher_id != 0">
-                e.teacher_id = #{teacher_id}
+                f.teacher_id = #{teacher_id}
             </if>
             <if test="student_name != null and student_name != ''">
-                and student_name like concat('%',#{student_name},'%')
+                and f.student_name like concat('%',#{student_name},'%')
             </if>
         </where>
         GROUP BY
@@ -20,10 +20,10 @@
         ${sql}
         <where>
             <if test="teacher_id != 0">
-                e.teacher_id = #{teacher_id}
+                f.teacher_id = #{teacher_id}
             </if>
             <if test="student_name != null and student_name != ''">
-                and student_name like concat('%',#{student_name},'%')
+                and f.student_name like concat('%',#{student_name},'%')
             </if>
         </where>
         GROUP BY

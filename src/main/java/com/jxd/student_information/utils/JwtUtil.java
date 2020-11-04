@@ -1,4 +1,4 @@
-package com.jxd.student_information.jwt;
+package com.jxd.student_information.utils;
 
 import io.jsonwebtoken.*;
 import org.apache.commons.lang3.StringUtils;

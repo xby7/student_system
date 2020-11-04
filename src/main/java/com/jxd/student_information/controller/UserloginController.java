@@ -3,10 +3,11 @@ package com.jxd.student_information.controller;
 import com.jxd.student_information.jwt.JwtUtil;
 import com.jxd.student_information.model.Userlogin;
 import com.jxd.student_information.service.IUserloginService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;

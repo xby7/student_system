@@ -1,9 +1,8 @@
 package com.jxd.student_information.config;
 
 
-import com.jxd.student_information.jwt.JwtUtil;
+import com.jxd.student_information.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +36,7 @@ public class JWTConfig {
                         // 拦截所有请求
                         .addPathPatterns("/login/**");
                         // 不拦截 登录 请求
-                       // .excludePathPatterns("/login/**");
+                       //.excludePathPatterns("/login/**");
             }
         };
     }
