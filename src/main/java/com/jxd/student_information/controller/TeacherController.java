@@ -1,8 +1,10 @@
 package com.jxd.student_information.controller;
 
+import com.jxd.student_information.mapper.IUserloginMapper;
 import com.jxd.student_information.model.Teacher;
 import com.jxd.student_information.service.ICourseService;
 import com.jxd.student_information.service.ITeacherService;
+import com.jxd.student_information.service.IUserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +28,10 @@ public class TeacherController {
 
     @Autowired
     private ITeacherService teacherService;
-
     @Autowired
     private ICourseService courseService;
+    @Autowired
+    private IUserloginService userloginService;
 
 
     @RequestMapping("/getAllStuWithTeacher")
@@ -74,8 +77,11 @@ public class TeacherController {
     @RequestMapping("/addTeacher")
     @ResponseBody
     public String addTeacher(String teacherName) {
-        boolean result = teacherService.addTeacher(teacherName);
-        if (result == true) {
+        boolean result01 = teacherService.addTeacher(teacherName);
+        String role = "1"; //教师的权限等级
+        String password = "123456"; //默认密码
+        boolean result02 = userloginService.addUser(role, password);
+        if (result01 && result02 == true) {
             return "添加成功";
         } else {
             return "服务器响应失败";

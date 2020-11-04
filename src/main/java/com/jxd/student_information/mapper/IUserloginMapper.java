@@ -2,6 +2,9 @@ package com.jxd.student_information.mapper;
 
 import com.jxd.student_information.model.Userlogin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface IUserloginMapper extends BaseMapper<Userlogin> {
 
+    boolean insertUserlogin(@Param("role") String role,@Param("password") String password);
+
+    boolean updatePassword(@Param("users") List<Userlogin> users);
 }

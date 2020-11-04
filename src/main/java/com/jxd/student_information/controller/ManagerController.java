@@ -4,6 +4,7 @@ import com.jxd.student_information.model.Dept;
 import com.jxd.student_information.model.Manager;
 import com.jxd.student_information.service.IDeptService;
 import com.jxd.student_information.service.IManagerService;
+import com.jxd.student_information.service.IUserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +27,10 @@ public class ManagerController {
 
     @Autowired
     IManagerService managerService;
-
     @Autowired
     IDeptService deptService;
+    @Autowired
+    IUserloginService userloginService;
 
     @RequestMapping("/getAllManager")
     @ResponseBody
@@ -45,8 +47,11 @@ public class ManagerController {
     @RequestMapping("/addManager")
     @ResponseBody
     public String addManager(String managerName, String deptName) {
-        boolean result = managerService.addManager(managerName, deptName);
-        if (result == true) {
+        boolean result01 = managerService.addManager(managerName, deptName);
+        String role = "2"; //部门主管的权限等级
+        String password = "123456"; //默认密码
+        boolean result02 = userloginService.addUser(role, password);
+        if (result01 && result02 == true) {
             return "添加成功";
         } else {
             return "服务器响应失败";

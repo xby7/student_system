@@ -6,17 +6,15 @@ import com.jxd.student_information.service.IUserloginService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author xby
@@ -36,14 +34,14 @@ public class UserloginController {
     //修改密码
     @RequestMapping("/updateUserPassword")
     @ResponseBody
-    public String updateUserPWD(int userId,String newPassword){
+    public String updateUserPWD(int userId, String newPassword) {
         Userlogin userlogin = new Userlogin();
         userlogin.setUserId(userId);
         userlogin.setPassword(newPassword);
         boolean flag = userloginService.updateById(userlogin);
-        if (flag){
+        if (flag) {
             return "success";
-        }else {
+        } else {
             return "error";
         }
     }
@@ -76,5 +74,21 @@ public class UserloginController {
         }
     }
 
+    @RequestMapping("/getAllUserlogin")
+    @ResponseBody
+    public List<Userlogin> getAllUserlogin() {
+        return userloginService.list();
+    }
+
+    @RequestMapping("/repassword")
+    @ResponseBody
+    public String repassword(@RequestBody List<Userlogin> users) {
+        boolean result = userloginService.repassword(users);
+        if (result == true) {
+            return "密码重置成功";
+        } else {
+            return "服务器响应失败";
+        }
+    }
 
 }
