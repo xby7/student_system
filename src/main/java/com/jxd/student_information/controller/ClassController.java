@@ -78,9 +78,9 @@ public class ClassController {
     /**
      * @return 返回的是一个 map 包含班期和 教师信息("1 张三"的形式)
      */
-    @RequestMapping("/getClassByNo")
+    @RequestMapping("/getClassById")
     @ResponseBody
-    public Map<String, Object> getClassByNo(int classNo) {
+    public Map<String, Object> getClassById(int classNo) {
         Class aClass = classService.getById(classNo);
         Teacher teacher = teacherService.getById(aClass.getTeacherId());
         Map<String, Object> map = new HashMap<>();
@@ -94,9 +94,9 @@ public class ClassController {
     /**
      * @param teacherId 是 "1 张三" 这种形式
      */
-    @RequestMapping("/updateClassByNo")
+    @RequestMapping("/updateClassById")
     @ResponseBody
-    public String updateClassByNo(int classNo, String teacherId) {
+    public String updateClassById(int classNo, String teacherId) {
         int teacherId_int = Integer.parseInt(teacherId.split(" ")[0]);
         boolean result = classService.updateClassByNo(classNo, teacherId_int);
         if (result == true) {
