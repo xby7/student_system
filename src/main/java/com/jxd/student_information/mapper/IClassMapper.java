@@ -24,6 +24,6 @@ public interface IClassMapper extends BaseMapper<Class> {
 
     boolean insertClass(@Param("teacherId") int teacherId);
 
-    boolean updateClassByNo(@Param("classNo") int classNo, @Param("teacherId") int teacherId);
+    boolean updateClassById(@Param("classNo") int classNo, @Param("teacherId") int teacherId);
 
 }

@@ -98,7 +98,7 @@ public class ClassController {
     @ResponseBody
     public String updateClassById(int classNo, String teacherId) {
         int teacherId_int = Integer.parseInt(teacherId.split(" ")[0]);
-        boolean result = classService.updateClassByNo(classNo, teacherId_int);
+        boolean result = classService.updateClassById(classNo, teacherId_int);
         if (result == true) {
             return "修改成功";
         } else {

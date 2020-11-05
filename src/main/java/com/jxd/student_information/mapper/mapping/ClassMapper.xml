@@ -18,7 +18,7 @@
         insert into class (teacher_id) values (#{teacherId})
     </insert>
 
-    <update id="updateClassByNo">
+    <update id="updateClassById">
         update class set teacher_id = #{teacherId} where class_no = #{classNo}
     </update>
 </mapper>

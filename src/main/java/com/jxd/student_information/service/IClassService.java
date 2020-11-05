@@ -22,6 +22,6 @@ public interface IClassService extends IService<Class> {
 
     boolean addClass(int teacherId);
 
-    boolean updateClassByNo(int classNo, int teacherId);
+    boolean updateClassById(int classNo, int teacherId);
 
 }
