@@ -29,7 +29,7 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
     Student student =new Student();
-    //ImgUtil imgUtil = new ImgUtil();
+    ImgUtil imgUtil = new ImgUtil();
     @RequestMapping("/getStudentByPage")
     @ResponseBody
     public List<Map<String,Object>> getAllStudentByPage(@Param("student_name") String student_name,
@@ -82,11 +82,11 @@ public class StudentController {
         //完成上传文件
         File newFile= new File(filePath,filename);
         multipartFile.transferTo(newFile);
-
-        System.out.println(filename);
-        System.out.println(newFile.getAbsolutePath().replaceAll("\\\\", "/"));
+        String imagePath = newFile.getAbsolutePath().replaceAll("\\\\", "/");
+        imgUtil.setImgpath(imagePath);
+        System.out.println(imagePath);
         //返回文件名 前台通过固定地址+文件名的方法访问该图片 存储使用的是相对路径
-        return filename;
+        return imagePath;
     }
 
     @RequestMapping("/addStudents")
@@ -104,9 +104,6 @@ public class StudentController {
                                String img_path,
                                String remark
                               ) {
-        System.out.println(student_name);
-        System.out.println(img_path);
-        System.out.println(birthday);
         Integer classNo = 47;
         student.setStudentName(student_name);
         student.setStudentId(10);
@@ -119,6 +116,7 @@ public class StudentController {
         student.setMaritalStatus(marital_status);
         student.setNativePlace(native_place);
         student.setRemark(remark);
+        img_path = imgUtil.getImgpath().substring(30);
         student.setImgPath(img_path);
         System.out.println(student.getImgPath());
         student.setSex(sex);
