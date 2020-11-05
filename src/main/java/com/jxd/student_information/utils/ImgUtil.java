@@ -1,4 +1,4 @@
-package util;
+package com.jxd.student_information.utils;
 
 import lombok.Data;
 

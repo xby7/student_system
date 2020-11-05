@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IClassMapper">
 
-    <select id="selectAllClassWithTeacher_name" resultType="java.util.HashMap">
+    <select id="selectAllClassWithTeacher_name" resultType="java.com.jxd.student_information.util.HashMap">
         select c.class_no,t.teacher_name from class c left join teacher t
         on c.teacher_id = t.teacher_id
     </select>
 
-    <select id="selectAllClassWithTeacher_nameByPage" resultType="java.util.HashMap">
+    <select id="selectAllClassWithTeacher_nameByPage" resultType="java.com.jxd.student_information.util.HashMap">
         select c.class_no,t.teacher_name from class c left join teacher t
         on c.teacher_id = t.teacher_id
         order by c.class_no
