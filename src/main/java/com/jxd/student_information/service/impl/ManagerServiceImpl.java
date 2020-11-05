@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author xby
@@ -25,15 +25,24 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
     IManagerMapper managerMapper;
 
     @Override
-    public List<Map<String, Object>> getAllManagerWithDept_name(String manager_name) {
-        return managerMapper.selectAllManagerWithDept_name(manager_name);
+    public List<Map<String, Object>> getAllManagerWithDept_name(String managerName) {
+        return managerMapper.selectAllManagerWithDept_name(managerName);
     }
 
     @Override
-    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize,int currentPage,String manager_name) {
-        int pageStart = (currentPage-1)*pageSize;
-        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart,pageSize,manager_name);
+    public List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String managerName) {
+        int pageStart = (currentPage - 1) * pageSize;
+        return managerMapper.selectAllManagerWithDept_nameByPage(pageStart, pageSize, managerName);
     }
 
+    @Override
+    public boolean addManager(String managerName, String deptName) {
+        return managerMapper.insertManager(managerName, deptName);
+    }
+
+    @Override
+    public boolean updateManagerById(int managerId, String managerName, String deptName) {
+        return managerMapper.updateManagerById(managerId,managerName,deptName);
+    }
 
 }

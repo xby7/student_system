@@ -16,14 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 @Controller
 public class StudentController {
     @Autowired

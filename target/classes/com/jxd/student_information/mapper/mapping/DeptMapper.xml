@@ -2,4 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IDeptMapper">
 
+    <insert id="insertDept">
+        insert into dept (dept_name) values (#{deptName})
+    </insert>
+
+    <select id="selectAllDept" resultType="Dept">
+        select dept_no,dept_name from dept
+        <if test="deptName != null and deptName != ''">
+            where dept_name like concat('%',#{deptName},'%')
+        </if>
+    </select>
+
+    <select id="selectAllDeptByPage" resultType="Dept">
+        select dept_no,dept_name from dept
+        <if test="deptName != null and deptName != ''">
+            where dept_name like concat('%',#{deptName},'%')
+        </if>
+        order by dept_no
+        limit #{pageStart},#{pageSize}
+    </select>
+
+    <update id="updateDeptById">
+        update dept set dept_name = #{deptName} where dept_no = #{deptNo}
+    </update>
+
 </mapper>

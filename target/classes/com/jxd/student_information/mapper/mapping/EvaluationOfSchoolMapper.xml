@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IEvaluationOfSchoolMapper">
 
+    <!--查询单个学生评价信息-->
+    <select id="selectEvaluationByStuId" resultType="EvaluationOfSchool">
+        SELECT overall_score,evaluation_form_school,student_id FROM evaluation_of_school WHERE student_id = #{studentId}
+    </select>
+
+    <update id="updateStudentWithTeacher" parameterType="EvaluationOfSchool">
+        update evaluation_of_school set teacher_name = #{teacherName},overall_score = #{overallScore},
+        evaluation_form_school = #{evaluationFormSchool} where student_id = #{studentId}
+    </update>
+
 </mapper>
