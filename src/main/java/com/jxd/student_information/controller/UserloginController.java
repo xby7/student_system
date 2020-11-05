@@ -14,14 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 @CrossOrigin
 @Controller
 public class UserloginController {
@@ -76,12 +68,19 @@ public class UserloginController {
         }
     }
 
+    //xby
     @RequestMapping("/getAllUserlogin")
     @ResponseBody
     public List<Userlogin> getAllUserlogin() {
         return userloginService.list();
     }
 
+    //xby
+
+    /**
+     *
+     * @param users 前台以 json 形式传递（需要用 @RequestBody 注解接收）过来的用户信息，
+     */
     @RequestMapping("/repassword")
     @ResponseBody
     public String repassword(@RequestBody List<Userlogin> users) {
@@ -89,8 +88,7 @@ public class UserloginController {
         if (result == true) {
             return "密码重置成功";
         } else {
-            return "服务器响应失败";
+            return "密码重置失败，请稍后再试";
         }
     }
-
 }
