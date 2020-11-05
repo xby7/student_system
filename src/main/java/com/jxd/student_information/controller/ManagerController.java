@@ -48,11 +48,10 @@ public class ManagerController {
     @RequestMapping("/addManager")
     @ResponseBody
     public String addManager(String managerName, String deptName) {
-        boolean result01 = managerService.addManager(managerName, deptName);
         String role = "2"; //部门主管的权限等级
         String password = "123456"; //默认密码
-        boolean result02 = userloginService.addUser(role, password);
-        if (result01 && result02 == true) {
+        boolean result = managerService.addManager(role,password,managerName, deptName);
+        if (result == true) {
             return "添加成功";
         } else {
             return "添加失败，请稍后再试";

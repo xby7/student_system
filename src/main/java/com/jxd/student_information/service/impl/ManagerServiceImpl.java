@@ -36,8 +36,8 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
     }
 
     @Override
-    public boolean addManager(String managerName, String deptName) {
-        return managerMapper.insertManager(managerName, deptName);
+    public boolean addManager(String role, String password, String managerName, String deptName) {
+        return managerMapper.insertManager(role,password,managerName, deptName);
     }
 
     @Override

@@ -41,7 +41,9 @@
 
 
     <insert id="insertTeacher">
-        insert into teacher (teacher_name) values (#{teacherName})
+        insert into teacher (teacher_name) values (#{teacherName});
+        insert into userlogin (user_id,password,user_name,role) values
+        ((select last_insert_id()),#{password},#{teacherName},#{role})
     </insert>
 
     <select id="selectAllTeacher" resultType="Teacher">

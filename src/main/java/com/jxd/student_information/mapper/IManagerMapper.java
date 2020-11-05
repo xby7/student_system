@@ -15,7 +15,10 @@ public interface IManagerMapper extends BaseMapper<Manager> {
                                                                   @Param("pageSize") int pageSize,
                                                                   @Param("managerName") String managerName);
 
-    boolean insertManager(@Param("managerName") String managerName, @Param("deptName") String deptName);
+    boolean insertManager(@Param("password")String password,
+                          @Param("role")String role,
+                          @Param("managerName") String managerName,
+                          @Param("deptName") String deptName);
 
     boolean updateManagerById(@Param("managerId") int managerId, @Param("managerName") String managerName,
                               @Param("deptName") String deptName);

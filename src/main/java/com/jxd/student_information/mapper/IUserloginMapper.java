@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface IUserloginMapper extends BaseMapper<Userlogin> {
 
-    boolean insertUserlogin(@Param("role") String role,@Param("password") String password);
-
     boolean updatePassword(@Param("users") List<Userlogin> users);
 }

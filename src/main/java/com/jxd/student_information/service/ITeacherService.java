@@ -9,15 +9,15 @@ import java.util.Map;
 public interface ITeacherService extends IService<Teacher> {
     //List<Map<String,Object>> getAllStuWithTeacher(String student_name,int teacher_id);
 
-    List<Map<String,Object>> getAllStuWithTeacherByPage(String student_name,int teacher_id,int curPage,int pageSize);
+    List<Map<String, Object>> getAllStuWithTeacherByPage(String student_name, int teacher_id, int curPage, int pageSize);
 
-    List<Map<String,Object>> getAllStuTotalsWithTeacher(String student_name, int teacher_id);
+    List<Map<String, Object>> getAllStuTotalsWithTeacher(String student_name, int teacher_id);
 
-    boolean addTeacher(String teacherName);
+    boolean addTeacher(String role, String password, String teacherName);
 
     List<Teacher> getAllTeacher(String teacherName);
 
-    List<Teacher> getAllTeacherByPage(int pageSize,int currentPage,String teacherName);
+    List<Teacher> getAllTeacherByPage(int pageSize, int currentPage, String teacherName);
 
     boolean updateTeacherById(int teacherId, String teacherName);
 }

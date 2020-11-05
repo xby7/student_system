@@ -70,18 +70,17 @@ public class TeacherController {
     //xby
 
     /**
-     * 添加教师信息时，将该教师 id 作为用户名，默认密码
+     * 添加教师信息时，将该教师 id 作为user_name，教师名称作为用户名，默认密码
      * ，以及教师权限等级"1" 插入到用户登陆表中
      * 该教师 id 通过 sql 语句查询
      */
     @RequestMapping("/addTeacher")
     @ResponseBody
     public String addTeacher(String teacherName) {
-        boolean result01 = teacherService.addTeacher(teacherName);
         String role = "1"; //教师的权限等级
         String password = "123456"; //默认密码
-        boolean result02 = userloginService.addUser(role, password);
-        if (result01 && result02 == true) {
+        boolean result = teacherService.addTeacher(role, password,teacherName);
+        if (result == true) {
             return "添加成功";
         } else {
             return "添加失败，请稍后再试";

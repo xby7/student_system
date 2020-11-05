@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.ICourseScoreMapper">
     <!--教师批量更新单个学生的所有成绩-->
-    <update id="updateStuScoreWithTeacher" parameterType="java.com.jxd.student_information.util.List">
+    <update id="updateStuScoreWithTeacher" parameterType="java.util.List">
         update course_score
         <trim prefix="set" suffixOverrides=",">
             <trim prefix="score = case" suffix="end,">

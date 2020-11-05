@@ -9,19 +9,21 @@ import java.util.Map;
 
 public interface ITeacherMapper extends BaseMapper<Teacher> {
     //获取总数
-    List<Map<String,Object>> selectAllStuTotalsWithTeacher(@Param("student_name") String student_name,
-                                          @Param("teacher_id") int teacher_id,String sql);
+    List<Map<String, Object>> selectAllStuTotalsWithTeacher(@Param("student_name") String student_name,
+                                                            @Param("teacher_id") int teacher_id, String sql);
 
     //获取分页后的数据
-    List<Map<String,Object>> selectAllStuBypageWithTeacher(@Param("student_name") String student_name,
-                                                @Param("teacher_id") int teacher_id,String sql,
-                                                @Param("pageIndex") int pageIndex,
-                                                @Param("pageSize") int pageSize);
+    List<Map<String, Object>> selectAllStuBypageWithTeacher(@Param("student_name") String student_name,
+                                                            @Param("teacher_id") int teacher_id, String sql,
+                                                            @Param("pageIndex") int pageIndex,
+                                                            @Param("pageSize") int pageSize);
 
     //获取动态的行转列SQL语句
     List<String> getSequence();
 
-    boolean insertTeacher(@Param("teacherName") String teacherName);
+    boolean insertTeacher(@Param("role") String role,
+                          @Param("password") String password,
+                          @Param("teacherName") String teacherName);
 
     List<Teacher> selectAllTeacher(@Param("teacherName") String teacherName);
 
@@ -29,6 +31,6 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
                                          @Param("pageSize") int pageSize,
                                          @Param("teacherName") String teacherName);
 
-    boolean updateTeacherById(int teacherId,String teacherName);
+    boolean updateTeacherById(int teacherId, String teacherName);
 }
 

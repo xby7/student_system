@@ -12,7 +12,7 @@ public interface IManagerService extends IService<Manager> {
 
     List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String managerName);
 
-    boolean addManager(String managerName, String deptName);
+    boolean addManager(String role, String password, String managerName, String deptName);
 
     boolean updateManagerById(int managerId, String managerName, String deptName);
 }

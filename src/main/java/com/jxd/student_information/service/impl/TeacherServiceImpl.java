@@ -75,8 +75,8 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
     }
 
     @Override
-    public boolean addTeacher(String teacherName) {
-        return teacherMapper.insertTeacher(teacherName);
+    public boolean addTeacher(String role,String password,String teacherName) {
+        return teacherMapper.insertTeacher(role,password,teacherName);
     }
 
     @Override

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.ITeacherMapper">
-    <select id="selectAllStuTotalsWithTeacher" resultType="java.com.jxd.student_information.util.HashMap">
+    <select id="selectAllStuTotalsWithTeacher" resultType="java.util.HashMap">
        ${sql}
         <where>
             <if test="teacher_id != 0">
@@ -16,7 +16,7 @@
         order by student_id
     </select>
 
-    <select id="selectAllStuBypageWithTeacher" resultType="java.com.jxd.student_information.util.HashMap">
+    <select id="selectAllStuBypageWithTeacher" resultType="java.util.HashMap">
         ${sql}
         <where>
             <if test="teacher_id != 0">
@@ -41,7 +41,9 @@
 
 
     <insert id="insertTeacher">
-        insert into teacher (teacher_name) values (#{teacherName})
+        insert into teacher (teacher_name) values (#{teacherName});
+        insert into userlogin (user_id,password,user_name,role) values
+        ((select last_insert_id()),#{password},#{teacherName},#{role})
     </insert>
 
     <select id="selectAllTeacher" resultType="Teacher">
