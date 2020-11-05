@@ -1,14 +1,20 @@
 package com.jxd.student_information.controller;
 
+import com.jxd.student_information.model.Student;
 import com.jxd.student_information.service.IStudentService;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import util.ImgUtil;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * <p>
@@ -22,7 +28,8 @@ import java.util.Map;
 public class StudentController {
     @Autowired
     private IStudentService studentService;
-
+    Student student =new Student();
+    //ImgUtil imgUtil = new ImgUtil();
     @RequestMapping("/getStudentByPage")
     @ResponseBody
     public List<Map<String,Object>> getAllStudentByPage(@Param("student_name") String student_name,
@@ -52,6 +59,81 @@ public class StudentController {
 
         return resultValue;
     }
+
+    @RequestMapping("/upload")
+    @CrossOrigin
+    public String upload(@RequestParam("file") MultipartFile multipartFile) throws Exception {
+        // 文件存储位置，文件的目录要存在才行，可以先创建文件目录，然后进行存储
+        String filePath = "E:/frontworkspace/myfenli/src/assets/images/uplaod";
+
+        File file =new File(filePath);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        // 文件存储
+        //上传文件项
+        //获取上传文件的名称
+        String filename = multipartFile.getOriginalFilename();
+        System.out.println("filename:"+filename);
+        //把文件名称设置唯一值
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        filename=uuid+"-"+filename;
+        System.out.println("filename:"+filename);
+        //完成上传文件
+        File newFile= new File(filePath,filename);
+        multipartFile.transferTo(newFile);
+
+        System.out.println(filename);
+        System.out.println(newFile.getAbsolutePath().replaceAll("\\\\", "/"));
+        //返回文件名 前台通过固定地址+文件名的方法访问该图片 存储使用的是相对路径
+        return filename;
+    }
+
+    @RequestMapping("/addStudents")
+    @ResponseBody
+    public boolean addStudents(String student_name,
+                               String class_no,
+                               String sex,
+                               String folk,
+                               String marital_status,
+                               String id_number,
+                               String graduate_school,
+                               String birthday,
+                               String major,
+                               String native_place,
+                               String img_path,
+                               String remark
+                              ) {
+        System.out.println(student_name);
+        System.out.println(img_path);
+        System.out.println(birthday);
+        Integer classNo = 47;
+        student.setStudentName(student_name);
+        student.setStudentId(10);
+        student.setClassNo(classNo);
+        student.setBirthday(birthday.substring(0,10));
+        student.setFolk(folk);
+        student.setGraduateSchool(graduate_school);
+        student.setIdNumber(id_number);
+        student.setMajor(major);
+        student.setMaritalStatus(marital_status);
+        student.setNativePlace(native_place);
+        student.setRemark(remark);
+        student.setImgPath(img_path);
+        System.out.println(student.getImgPath());
+        student.setSex(sex);
+
+        return studentService.addStudents(student);
+    }
+
+    @RequestMapping("/delStudent")
+    @ResponseBody
+    public boolean delStudent(String student_id){
+        Integer studentId = Integer.parseInt(student_id);
+        return studentService.delStudent(studentId);
+    }
+
+
 
 
 }

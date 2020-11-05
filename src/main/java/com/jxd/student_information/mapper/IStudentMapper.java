@@ -32,5 +32,14 @@ public interface IStudentMapper extends BaseMapper<Student> {
      */
     List<Map<String,Object>> getAllStudentByPage(@Param("student_name")String student_name, @Param("class_no")int class_no,@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
 
+    /**
+     * 新增学员信息
+     * @param student 接收一个学员对象，里面封装了学员的信息
+     * @return 返回是否新增成功
+     */
+    boolean addStudents(Student student);
+
+    boolean delStudent(Integer studentId);
+
 
 }

@@ -34,4 +34,15 @@ public class StudentServiceImpl extends ServiceImpl<IStudentMapper, Student> imp
 
         return studentMapper.getAllStudentByPage(student_name,class_no,pageIndex,pageSize);
     }
+
+    @Override
+    public boolean addStudents(Student student) {
+        return studentMapper.addStudents(student);
+    }
+
+    @Override
+    public boolean delStudent(Integer studentId) {
+        return studentMapper.delStudent(studentId);
+    }
+
 }

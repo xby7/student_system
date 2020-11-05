@@ -60,7 +60,7 @@
 
     <select id="selectAllStuBypage" resultType="java.util.HashMap">
         SELECT
-        f.student_id,
+        e.student_id,
         student_name,
         sex,
         folk,
@@ -72,7 +72,7 @@
         MAX( CASE course_name WHEN 'JS笔试' THEN score ELSE 0 END ) JS笔试,
         MAX( CASE course_name WHEN 'Oracle笔试' THEN score ELSE 0 END ) Oracle笔试,
         MAX( CASE course_name WHEN 'L1面试' THEN score ELSE 0 END ) L1面试,
-        f.teacher_id
+        e.teacher_id
         FROM
         (
         SELECT
@@ -100,8 +100,8 @@
         LEFT JOIN class c ON c.class_no = s.class_no
         ) d
         LEFT JOIN course_score cs ON d.student_id = cs.student_id
-        ) f
-        LEFT JOIN course c ON f.course_id = c.course_id
+        ) e
+        LEFT JOIN course c ON e.course_id = c.course_id
         <where>
             <if test="e.teacher_id != 0">
                 e.teacher_id = #{teacher_id}

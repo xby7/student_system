@@ -18,4 +18,8 @@ public interface IStudentService extends IService<Student> {
     List<Map<String,Object>> getAllStudent(String student_name, int class_no);
 
     List<Map<String,Object>> getAllStudentByPage(String student_name, int class_no,int curPage,int pageSize);
+
+    boolean addStudents(Student student);
+
+    boolean delStudent(Integer studentId);
 }
