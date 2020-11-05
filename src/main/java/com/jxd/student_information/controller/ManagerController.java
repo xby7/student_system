@@ -42,7 +42,7 @@ public class ManagerController {
 
     /**
      * 添加部门主管信息时，将该主管 id 作为用户名，默认密码
-     * ，以及主管权限等级 插入到用户登陆表中
+     * ，以及主管权限等级"2" 插入到用户登陆表中
      * 该主管 id 通过 sql 语句查询
      */
     @RequestMapping("/addManager")
