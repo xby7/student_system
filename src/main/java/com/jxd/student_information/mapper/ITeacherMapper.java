@@ -7,14 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface ITeacherMapper extends BaseMapper<Teacher> {
     //获取总数
     List<Map<String,Object>> selectAllStuTotalsWithTeacher(@Param("student_name") String student_name,
