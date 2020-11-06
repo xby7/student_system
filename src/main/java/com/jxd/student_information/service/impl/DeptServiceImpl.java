@@ -43,6 +43,11 @@ public class DeptServiceImpl extends ServiceImpl<IDeptMapper, Dept> implements I
     public boolean updateDeptById(int deptNo, String deptName) {
         return deptMapper.updateDeptById(deptNo, deptName);
     }
+    //lk
+    @Override
+    public Integer getAllDeptNo(String deptName) {
+        return deptMapper.getAllDeptNo(deptName);
+    }
 
 
 }

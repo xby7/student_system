@@ -1,7 +1,7 @@
 package com.jxd.student_information.mapper;
 
-import com.jxd.student_information.model.Student;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.jxd.student_information.model.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface IStudentMapper extends BaseMapper<Student> {
      * 通过姓名、班期查找学生
      * @return
      */
-    List<Map<String,Object>> getAllStudent(@Param("student_name")String student_name, @Param("class_no")int class_no);
+    List<Map<String,Object>> getAllStudent(@Param("student_name") String student_name, @Param("class_no") int class_no);
 
     /**
      * 分页查询
@@ -22,7 +22,7 @@ public interface IStudentMapper extends BaseMapper<Student> {
      * @param pageSize
      * @return
      */
-    List<Map<String,Object>> getAllStudentByPage(@Param("student_name")String student_name, @Param("class_no")int class_no,@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+    List<Map<String,Object>> getAllStudentByPage(@Param("student_name") String student_name, @Param("class_no") int class_no, @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
 
     /**
      * 新增学员信息
@@ -31,7 +31,25 @@ public interface IStudentMapper extends BaseMapper<Student> {
      */
     boolean addStudents(Student student);
 
+    /**
+     * 删除学员信息
+     * @param studentId 接收id
+     * @return 返回是否删除成本
+     */
     boolean delStudent(Integer studentId);
+
+    /**
+     * 修改学员信息
+     * @param student
+     * @return
+     */
+
+    boolean editStudent(Student student);
+
+
+
+
+
 
 
 }

@@ -1,9 +1,9 @@
 package com.jxd.student_information.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxd.student_information.mapper.IStudentMapper;
 import com.jxd.student_information.model.Student;
 import com.jxd.student_information.service.IStudentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +43,11 @@ public class StudentServiceImpl extends ServiceImpl<IStudentMapper, Student> imp
     @Override
     public boolean delStudent(Integer studentId) {
         return studentMapper.delStudent(studentId);
+    }
+
+    @Override
+    public boolean editStudent(Student student) {
+        return studentMapper.editStudent(student);
     }
 
 }

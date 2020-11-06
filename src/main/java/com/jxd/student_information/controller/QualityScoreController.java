@@ -27,11 +27,11 @@ public class QualityScoreController {
      */
     @RequestMapping("/getScoreByStudentIdWithManager")
     @ResponseBody
-    public List<Map<String, Object>> getScoreByStudentIdWithManager(int studentId,int periodNo){
-        //List<Map<String, Object>> qualityScoreWithStudent = qualityScoreService.getScoreWithManagerByStudentId(studentId,periodNo);
-        /*Map<String, Object> map = new HashMap<>();
-        map.put("qualityScoreWithStudent",qualityScoreWithStudent);*/
-        return qualityScoreService.getScoreWithManagerByStudentId(studentId,periodNo);
+    public Map<String, Object> getScoreByStudentIdWithManager(int studentId,int periodNo){
+        List<Map<String, Object>> qualityScoreWithStudent = qualityScoreService.getScoreWithManagerByStudentId(studentId,periodNo);
+        Map<String, Object> map = new HashMap<>();
+        map.put("qualityScoreWithStudent",qualityScoreWithStudent);
+        return map;
     }
 
 

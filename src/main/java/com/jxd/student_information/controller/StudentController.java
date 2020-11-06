@@ -1,14 +1,17 @@
 package com.jxd.student_information.controller;
 
 import com.jxd.student_information.model.Student;
+import com.jxd.student_information.service.IDeptService;
 import com.jxd.student_information.service.IStudentService;
-
+import com.jxd.student_information.utils.ImgUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import com.jxd.student_information.utils.ImgUtil;
 
 import java.io.File;
 import java.util.List;
@@ -19,6 +22,10 @@ import java.util.UUID;
 public class StudentController {
     @Autowired
     private IStudentService studentService;
+
+    @Autowired
+    private IDeptService deptService;
+
     Student student =new Student();
     ImgUtil imgUtil = new ImgUtil();
     @RequestMapping("/getStudentByPage")
@@ -91,14 +98,16 @@ public class StudentController {
                                String graduate_school,
                                String birthday,
                                String major,
+                               String phone,
                                String native_place,
                                String img_path,
                                String remark
                               ) {
-        Integer classNo = 47;
         student.setStudentName(student_name);
+        student.setPhone(phone);
+        System.out.println(student.getStudentName()+student.getPhone());
         student.setStudentId(10);
-        student.setClassNo(classNo);
+        student.setClassNo(Integer.parseInt(class_no));
         student.setBirthday(birthday.substring(0,10));
         student.setFolk(folk);
         student.setGraduateSchool(graduate_school);
@@ -107,11 +116,11 @@ public class StudentController {
         student.setMaritalStatus(marital_status);
         student.setNativePlace(native_place);
         student.setRemark(remark);
+
         img_path = imgUtil.getImgpath().substring(30);
         student.setImgPath(img_path);
         System.out.println(student.getImgPath());
         student.setSex(sex);
-
         return studentService.addStudents(student);
     }
 
@@ -123,6 +132,51 @@ public class StudentController {
     }
 
 
+    @RequestMapping("/editStudent")
+    @ResponseBody
+    public boolean editStudent(String student_id,
+                               String student_name,
+                               String class_no,
+                               String sex,
+                               String folk,
+                               String marital_status,
+                               String id_number,
+                               String graduate_school,
+                               String birthday,
+                               String major,
+                               String phone,
+                               String native_place,
+                               String img_path,
+                               String dept_name,
+                               String remark
+    ) {
+        student.setStudentId(Integer.parseInt(student_id));
+        student.setStudentName(student_name);
+        student.setClassNo(Integer.parseInt(class_no));
+        student.setBirthday(birthday.substring(0,10));
+        student.setFolk(folk);
+        student.setGraduateSchool(graduate_school);
+        student.setIdNumber(id_number);
+        student.setMajor(major);
+        student.setMaritalStatus(marital_status);
+        student.setPhone(phone);
+        student.setNativePlace(native_place);
+        student.setRemark(remark);
+        String img = img_path;
+        if (imgUtil.getImgpath()==null){
+            student.setImgPath(img);
+        }else {
+            img_path = imgUtil.getImgpath().substring(30);
+            student.setImgPath(img_path);
+        }
+        System.out.println(img);
+        System.out.println(student.getImgPath());
+        student.setSex(sex);
+
+        student.setDeptNo(deptService.getAllDeptNo(dept_name));
+
+        return studentService.editStudent(student);
+    }
 
 
 }

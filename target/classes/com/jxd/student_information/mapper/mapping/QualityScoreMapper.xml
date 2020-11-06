@@ -3,7 +3,7 @@
 <mapper namespace="com.jxd.student_information.mapper.IQualityScoreMapper">
 
     <!--获取单个学生的品质分数信息===经理（cbb）-->
-    <select id="selectScoreWithManagerByStudentId" resultType="java.util.Map">
+    <select id="selectScoreWithManagerByStudentId" resultType="QualityScore">
         SELECT score,quality_id,student_id,period_no FROM quality_score
         WHERE student_id = #{studentId} and period_no = #{periodNo}
         ORDER BY
