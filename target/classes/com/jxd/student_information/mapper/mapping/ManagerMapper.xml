@@ -20,7 +20,9 @@
     </select>
 
     <insert id="insertManager">
-        insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}))
+        insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}));
+        insert into userlogin (user_id,password,user_name,role) values
+        ((select last_insert_id()),#{password},#{managerName},#{role})
     </insert>
 
     <update id="updateManagerById">
