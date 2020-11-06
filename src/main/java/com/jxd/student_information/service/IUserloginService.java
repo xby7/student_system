@@ -15,8 +15,7 @@ import java.util.List;
  */
 public interface IUserloginService extends IService<Userlogin> {
 
-
-
     boolean repassword(List<Userlogin> users);
 
+    boolean deleteUserById(Integer userId);
 }

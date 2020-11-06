@@ -21,6 +21,8 @@ public class TeacherController {
     private ITeacherService teacherService;
     @Autowired
     private ICourseService courseService;
+    @Autowired
+    private IUserloginService userloginService;
 
 
     /**
@@ -104,8 +106,9 @@ public class TeacherController {
     @RequestMapping("/deleteTeacher")
     @ResponseBody
     public String deleteTeacher(int teacherId) {
-        boolean result = teacherService.removeById(teacherId);
-        if (result == true) {
+        boolean result01 = teacherService.removeById(teacherId);
+        boolean result02 = userloginService.deleteUserById(teacherId);
+        if (result01&result02 == true) {
             return "删除成功";
         } else {
             return "删除失败，请稍后再试";
