@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IUserloginService extends IService<Userlogin> {
 
-    boolean addUser(String role,String password);
+
 
     boolean repassword(List<Userlogin> users);
 
