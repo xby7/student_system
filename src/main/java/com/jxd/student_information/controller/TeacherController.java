@@ -21,8 +21,6 @@ public class TeacherController {
     private ITeacherService teacherService;
     @Autowired
     private ICourseService courseService;
-    @Autowired
-    private IUserloginService userloginService;
 
 
     /**
@@ -41,6 +39,8 @@ public class TeacherController {
         curPage = curPage == 0 ? 1 : curPage;
         pageSize = pageSize == 0 ? 5 : pageSize;
 
+
+
         Map<String, Object> map = new HashMap<>();
 
         List<Map<String, Object>> totals = teacherService.getAllStuTotalsWithTeacher(student_name, teacher_id);
@@ -51,6 +51,11 @@ public class TeacherController {
         map.put("students", students);
         map.put("total", totals);
         map.put("tableNameList", tableColumnList);
+
+        for(int i=0;i<students.size();i++){
+            int res = (int)students.get(i).get("student_id");
+            System.out.println("TeacherController:"+res);
+        }
 
         return map;
     }

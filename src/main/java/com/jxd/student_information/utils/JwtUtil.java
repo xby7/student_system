@@ -12,7 +12,7 @@ import java.util.Date;
 public class JwtUtil {
 
     // 设置默认过期时间（15 分钟）
-    private static final long DEFAULT_EXPIRE = 1000L * 60*15;
+    private static final long DEFAULT_EXPIRE = 1000L * 60*60*12;
     // 设置 jwt 生成 secret（随意指定）
     private static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
 
