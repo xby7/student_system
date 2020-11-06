@@ -27,6 +27,7 @@ public class Student {
     private String major;
     private String imgPath;
     private String remark;
+    private String phone;
     private Integer classNo;
     private Integer deptNo;
     private Integer isdeleted;

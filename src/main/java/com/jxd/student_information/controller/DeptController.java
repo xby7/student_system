@@ -24,6 +24,10 @@ public class DeptController {
     @Autowired
     IDeptService deptService;
 
+    /**
+     * 用于渲染下拉框
+     * @return
+     */
     @RequestMapping("/getAllDept_name")
     @ResponseBody
     public List<String> getAllDept_name() {
@@ -36,11 +40,22 @@ public class DeptController {
         }
         return dept_names;
     }
-
+    //xby
     @RequestMapping("/getAllDept")
     @ResponseBody
-    public List<Dept> getAllDept(String deptName){
+    public List<Dept> getAllDept(String deptName) {
         return deptService.getAllDept(deptName);
+    }
+
+    /**
+     * lk 通过部门名称找到部门号
+     * @param deptName
+     * @return
+     */
+    @RequestMapping("/getAllDeptNo")
+    @ResponseBody
+    public Integer getAllDeptNo(String deptName) {
+        return deptService.getAllDeptNo(deptName);
     }
 
     @RequestMapping("/getAllDeptByPage")
