@@ -46,14 +46,10 @@ public interface IStudentMapper extends BaseMapper<Student> {
 
     boolean editStudent(Student student);
 
-    /**
-     * 新增学员信息
-     * @param student 接收一个学员对象，里面封装了学员的信息
-     * @return 返回是否新增成功
-     */
-    boolean addStudents(Student student);
 
-    boolean delStudent(Integer studentId);
+
+
+
 
 
 }
