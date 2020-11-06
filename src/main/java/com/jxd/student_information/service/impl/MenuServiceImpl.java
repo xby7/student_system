@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ZhouYufei
@@ -45,7 +42,6 @@ public class MenuServiceImpl extends ServiceImpl<IMenuMapper, Menu> implements I
             String parent_id = String.valueOf(nav.get("parent_id"));
 
             //System.out.println("MenuServiceImpl-parent_id:"+parent_id);
-
             if("0".equals(parent_id)){//父节点是0的，为根节点。
                 menuList.add(nav);
             }
@@ -61,6 +57,14 @@ public class MenuServiceImpl extends ServiceImpl<IMenuMapper, Menu> implements I
 //	        nav.setChildren(childList);//给根节点设置子节点
             nav.put("subMenuList", childList);
         }
+        //排序
+        menuList.sort(new Comparator<Map<String, Object>>() {
+            public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+                Integer name1 = Integer.valueOf(o1.get("order_num").toString());//name1是从你list里面拿出来的一个
+                Integer name2 = Integer.valueOf(o2.get("order_num").toString()); //name1是从你list里面拿出来的第二个name
+                return name2.compareTo(name1);
+            }
+        });
         return menuList;
     }
 
@@ -92,6 +96,15 @@ public class MenuServiceImpl extends ServiceImpl<IMenuMapper, Menu> implements I
         if(childList.size() == 0){
             return new ArrayList<>();
         }
+        //排序
+        childList.sort(new Comparator<Map<String, Object>>() {
+            public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+                Integer name1 = Integer.valueOf(o1.get("order_num").toString());//name1是从你list里面拿出来的一个
+                Integer name2 = Integer.valueOf(o2.get("order_num").toString()); //name1是从你list里面拿出来的第二个name
+                return name1.compareTo(name2);
+            }
+        });
+
         return childList;
     }
 }

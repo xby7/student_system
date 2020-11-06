@@ -2,4 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IQualityScoreMapper">
 
+    <!--获取单个学生的品质分数信息===经理（cbb）-->
+    <select id="selectScoreWithManagerByStudentId" resultType="QualityScore">
+        SELECT score,quality_id,student_id,period_no FROM quality_score
+        WHERE student_id = #{studentId} and period_no = #{periodNo}
+        ORDER BY
+           quality_id
+    </select>
+
+    <!--批量更新单个学生的所有品质分数===经理（cbb）-->
+    <update id="updateStuScoreWithManager" parameterType="java.util.List">
+        update quality_score
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="score = case" suffix="end,">
+                <foreach collection="list" item="QualityScore" index="index">
+                    <if test="QualityScore.qualityId != null">
+                        when quality_id = #{QualityScore.qualityId} then #{QualityScore.score}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where quality_id in
+        <foreach collection="list" item="QualityScore" index="index" open="(" separator="," close=")">
+            #{QualityScore.qualityId}
+        </foreach>
+        <foreach collection="list" item="QualityScore" index="index">
+            and student_id = #{QualityScore.studentId}
+        </foreach>
+    </update>
 </mapper>

@@ -24,6 +24,7 @@ public class CourseServiceImpl extends ServiceImpl<ICourseMapper, Course> implem
     @Autowired
     private ICourseMapper courseMapper;
 
+    //获取全部的课程名===教师（cbb）
     @Override
     public List<Map<String, Object>> getAllCourseName() {
         return courseMapper.selectAllCourseName();

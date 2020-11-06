@@ -6,21 +6,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface IManagerService extends IService<Manager> {
 
     List<Map<String, Object>> getAllManagerWithDept_name(String managerName);
 
     List<Map<String, Object>> getAllManagerWithDept_nameByPage(int pageSize, int currentPage, String managerName);
 
-    boolean addManager(String managerName, String deptName);
+    boolean addManager(String role, String password, String managerName, String deptName);
 
     boolean updateManagerById(int managerId, String managerName, String deptName);
+
+    //获取分页后的数据===经理（cbb）
+    List<Map<String,Object>> getAllStuWithManagerByPage(String studentName,int managerId,int periodNo,int curPage,int pageSize);
+    //获取总数===经理(cbb)
+    List<Map<String,Object>> getAllStuTotalsWithManager(String studentName, int managerId,int periodNo);
 }

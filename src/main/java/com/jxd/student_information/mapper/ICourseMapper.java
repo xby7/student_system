@@ -6,16 +6,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface ICourseMapper extends BaseMapper<Course> {
-    //获取课程名
+
+    /**
+     * 获取课程名
+     * @return
+     * @Author cbb
+     */
     List<Map<String, Object>> selectAllCourseName();
 
 }

@@ -24,11 +24,13 @@ public class EvaluationOfSchoolServiceImpl extends ServiceImpl<IEvaluationOfScho
     @Autowired
     private IEvaluationOfSchoolMapper evaluationOfSchoolMapper;
 
+    //根据学生id获取学生评价信息===教师（cbb）
     @Override
     public EvaluationOfSchool getEvaluationWithStudentId(int studentId) {
         return evaluationOfSchoolMapper.selectEvaluationByStuId(studentId);
     }
 
+    //评价学生===教师（cbb）
     @Override
     public boolean evaluatingStudent(EvaluationOfSchool evaluationOfSchool) {
         return evaluationOfSchoolMapper.updateStudentWithTeacher(evaluationOfSchool);

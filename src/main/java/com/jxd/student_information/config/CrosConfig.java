@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @Author:zff
- * @Description:Todo
+ * @Description: 控制 哪些前台 可以 以什么方式 访问 哪些后台资源
  * @Date:2020/4/19
  */
 @Configuration

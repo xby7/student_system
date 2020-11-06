@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.ITeacherMapper">
-
+    <!--学生总数======教师查询（cbb）-->
     <select id="selectAllStuTotalsWithTeacher" resultType="java.util.HashMap">
        ${sql}
         <where>
@@ -16,7 +16,7 @@
         student_id
         order by student_id
     </select>
-
+    <!--分页数据======教师查询（cbb）-->
     <select id="selectAllStuBypageWithTeacher" resultType="java.util.HashMap">
         ${sql}
         <where>
@@ -32,8 +32,7 @@
         order by student_id
         limit #{pageIndex},#{pageSize}
     </select>
-
-
+    <!--拼接的SQL语句======教师查询拼接的（cbb）-->
     <select id="getSequence" resultType="java.lang.String">
        SELECT
 	    GROUP_CONCAT( DISTINCT CONCAT( 'MAX(IF(course_name = ''', course_name, ''', score, 0)) AS ''', course_name, '''' ) )
@@ -43,7 +42,9 @@
 
 
     <insert id="insertTeacher">
-        insert into teacher (teacher_name) values (#{teacherName})
+        insert into teacher (teacher_name) values (#{teacherName});
+        insert into userlogin (user_id,password,user_name,role) values
+        ((select last_insert_id()),#{password},#{teacherName},#{role})
     </insert>
 
     <select id="selectAllTeacher" resultType="Teacher">

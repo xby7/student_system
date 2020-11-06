@@ -24,13 +24,14 @@ public class UserloginServiceImpl extends ServiceImpl<IUserloginMapper, Userlogi
     @Autowired
     IUserloginMapper userloginMapper;
 
-    @Override
-    public boolean addUser(String role, String password) {
-        return userloginMapper.insertUserlogin(role, password);
-    }
 
     @Override
     public boolean repassword(List<Userlogin> users) {
         return userloginMapper.updatePassword(users);
+    }
+
+    @Override
+    public boolean deleteUserById(Integer userId) {
+        return userloginMapper.deleteUserById(userId);
     }
 }

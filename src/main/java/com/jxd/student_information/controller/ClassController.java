@@ -14,14 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 @Controller
 public class ClassController {
 
@@ -30,18 +22,34 @@ public class ClassController {
     @Autowired
     ITeacherService teacherService;
 
+    // xby
+
+    /**
+     * @return 包含教师姓名的班级信息
+     */
     @RequestMapping("/getAllClass")
     @ResponseBody
     public List<Map<String, Object>> getAllClass() {
         return classService.getAllClassWithTeacher_name();
     }
 
+    // xby
+
+    /**
+     * @param pageSize    页面数据条数
+     * @param currentPage 当前页面号，从1开始
+     */
     @RequestMapping("/getAllClassByPage")
     @ResponseBody
     public List<Map<String, Object>> getAllClassByPage(int pageSize, int currentPage) {
         return classService.getAllClassWithTeacher_nameByPage(pageSize, currentPage);
     }
 
+    // xby
+
+    /**
+     * @param teacherId 是 "1 张三" 这种形式
+     */
     @RequestMapping("/addClass")
     @ResponseBody
     public String addClass(String teacherId) {
@@ -50,10 +58,11 @@ public class ClassController {
         if (result == true) {
             return "添加成功";
         } else {
-            return "服务器响应失败";
+            return "添加失败，请稍后再试";
         }
     }
 
+    // xby
     @RequestMapping("/deleteClass")
     @ResponseBody
     public String deleteClassByNo(int classNo) {
@@ -61,30 +70,40 @@ public class ClassController {
         if (result == true) {
             return "删除成功";
         } else {
-            return "服务器响应失败";
+            return "删除失败，请稍后再试";
         }
     }
 
-    @RequestMapping("/getClassByNo")
+    // xby
+
+    /**
+     * @return 返回的是一个 map 包含班期和 教师信息("1 张三"的形式)
+     */
+    @RequestMapping("/getClassById")
     @ResponseBody
-    public Map<String, Object> getClassByNo(int classNo) {
+    public Map<String, Object> getClassById(int classNo) {
         Class aClass = classService.getById(classNo);
         Teacher teacher = teacherService.getById(aClass.getTeacherId());
         Map<String, Object> map = new HashMap<>();
         map.put("classNo", aClass.getClassNo());
-        map.put("teacherId", teacher.getTeacherId()+" "+teacher.getTeacherName());
+        map.put("teacherId", teacher.getTeacherId() + " " + teacher.getTeacherName());
         return map;
     }
 
-    @RequestMapping("/updateClassByNo")
+    // xby
+
+    /**
+     * @param teacherId 是 "1 张三" 这种形式
+     */
+    @RequestMapping("/updateClassById")
     @ResponseBody
-    public String updateClassByNo(int classNo, String teacherId) {
+    public String updateClassById(int classNo, String teacherId) {
         int teacherId_int = Integer.parseInt(teacherId.split(" ")[0]);
-        boolean result = classService.updateClassByNo(classNo,teacherId_int);
+        boolean result = classService.updateClassById(classNo, teacherId_int);
         if (result == true) {
             return "修改成功";
         } else {
-            return "服务器响应失败";
+            return "修改失败，请稍后再试";
         }
     }
 

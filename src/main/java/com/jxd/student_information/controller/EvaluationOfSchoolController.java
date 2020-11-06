@@ -7,31 +7,33 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 @Controller
 public class EvaluationOfSchoolController {
     @Autowired
     private IEvaluationOfSchoolService evaluationOfSchoolService;
 
-    //获取学生的评价信息
+    /**
+     * 获取学生的评价信息===教师
+     * @param studentId 学生id
+     * @return
+     * @Author cbb
+     */
     @RequestMapping("/getEvaluationByStudentId")
     @ResponseBody
     public EvaluationOfSchool getEvaluationByStudentId(int studentId){
         return evaluationOfSchoolService.getEvaluationWithStudentId(studentId);
     }
 
-    //教师评价学生
+
+    /**
+     * 评价学生===教师（
+     * @param teacherName   教师姓名
+     * @param studentId     学生id
+     * @param overallScore  评价分数
+     * @param evaluationFormSchool  评语
+     * @return
+     * @Author cbb
+     */
     @RequestMapping("/evaluatingStudentWithTeacher")
     @ResponseBody
     public String evaluatingStudentWithTeacher(String teacherName,int studentId,int overallScore,String evaluationFormSchool){

@@ -6,14 +6,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface IClassService extends IService<Class> {
 
     List<Map<String, Object>> getAllClassWithTeacher_name();
@@ -22,6 +14,6 @@ public interface IClassService extends IService<Class> {
 
     boolean addClass(int teacherId);
 
-    boolean updateClassByNo(int classNo, int teacherId);
+    boolean updateClassById(int classNo, int teacherId);
 
 }
