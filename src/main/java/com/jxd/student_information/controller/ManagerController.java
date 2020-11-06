@@ -53,7 +53,7 @@ public class ManagerController {
     public String addManager(String managerName, String deptName) {
         String role = "2"; //部门主管的权限等级
         String password = "123456"; //默认密码
-        boolean result = managerService.addManager(role,password,managerName, deptName);
+        boolean result = managerService.addManager(role, password, managerName, deptName);
         if (result == true) {
             return "添加成功";
         } else {
@@ -65,8 +65,9 @@ public class ManagerController {
     @RequestMapping("/deleteManager")
     @ResponseBody
     public String deleteManagerById(int managerId) {
-        boolean result = managerService.removeById(managerId);
-        if (result == true) {
+        boolean result01 = managerService.removeById(managerId);
+        boolean result02 = userloginService.deleteUserById(managerId);
+        if (result01 && result02 == true) {
             return "删除成功";
         } else {
             return "删除失败，请稍后再试";
@@ -105,25 +106,26 @@ public class ManagerController {
 
     /**
      * 获取学生信息===经理
-     * @param studentName  学生姓名
-     * @param managerId 经理id
-     * @param periodNo  工作时期
-     * @param curPage   分页的两个参数
+     *
+     * @param studentName 学生姓名
+     * @param managerId   经理id
+     * @param periodNo    工作时期
+     * @param curPage     分页的两个参数
      * @param pageSize
      * @return
      * @Author cbb
      */
     @RequestMapping("/getAllStuWithManager")
     @ResponseBody
-    public Map<String, Object> getAllStuWithManager(String studentName,int managerId,int periodNo,
-                                                    int curPage, int pageSize){
+    public Map<String, Object> getAllStuWithManager(String studentName, int managerId, int periodNo,
+                                                    int curPage, int pageSize) {
         curPage = curPage == 0 ? 1 : curPage;
         pageSize = pageSize == 0 ? 5 : pageSize;
 
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> totals = managerService.getAllStuTotalsWithManager(studentName,managerId,periodNo);
+        List<Map<String, Object>> totals = managerService.getAllStuTotalsWithManager(studentName, managerId, periodNo);
         List<Map<String, Object>> students = managerService.getAllStuWithManagerByPage(studentName, managerId, periodNo,
-                                                                                        curPage, pageSize);
+                curPage, pageSize);
         List<Map<String, Object>> tableColumnList = qualityService.getAllQualityName();
 
         map.put("students", students);
