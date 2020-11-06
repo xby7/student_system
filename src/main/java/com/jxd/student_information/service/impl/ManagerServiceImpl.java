@@ -100,6 +100,7 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
                 " LEFT JOIN quality q ON q.quality_id = c.quality_id ) d" +
                 " LEFT JOIN evaluation_of_dept eod ON eod.student_id = d.student_id ) e" +
                 " LEFT JOIN evaluation_of_school eos ON eos.student_id = e.student_id ";
+
         return managerMapper.selectAllStuTotalsWithManager(studentName,managerId,periodNo,sql);
     }
 
