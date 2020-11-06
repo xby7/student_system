@@ -21,8 +21,6 @@ public class TeacherController {
     private ITeacherService teacherService;
     @Autowired
     private ICourseService courseService;
-    @Autowired
-    private IUserloginService userloginService;
 
 
     @RequestMapping("/getAllStuWithTeacher")
