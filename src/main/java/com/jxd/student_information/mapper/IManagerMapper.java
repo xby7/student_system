@@ -7,17 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import java.util.Map;
-
-/**
- * <p>
- * Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface IManagerMapper extends BaseMapper<Manager> {
 
     List<Map<String, Object>> selectAllManagerWithDept_name(@Param("managerName") String managerName);
@@ -26,7 +15,10 @@ public interface IManagerMapper extends BaseMapper<Manager> {
                                                                   @Param("pageSize") int pageSize,
                                                                   @Param("managerName") String managerName);
 
-    boolean insertManager(@Param("managerName") String managerName, @Param("deptName") String deptName);
+    boolean insertManager(@Param("password")String password,
+                          @Param("role")String role,
+                          @Param("managerName") String managerName,
+                          @Param("deptName") String deptName);
 
     boolean updateManagerById(@Param("managerId") int managerId, @Param("managerName") String managerName,
                               @Param("deptName") String deptName);

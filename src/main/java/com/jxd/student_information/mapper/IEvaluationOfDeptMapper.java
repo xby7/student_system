@@ -4,14 +4,6 @@ import com.jxd.student_information.model.EvaluationOfDept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface IEvaluationOfDeptMapper extends BaseMapper<EvaluationOfDept> {
 
 

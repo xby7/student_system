@@ -4,7 +4,6 @@ package com.jxd.student_information.controller;
 import com.jxd.student_information.service.IMenuService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,9 +11,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- */
 @CrossOrigin
 @Controller
 public class MenuController {

@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IUserloginMapper">
 
+    <update id="updatePassword">
+        update userlogin set password = "123456" where user_id in
+        (
+        <foreach collection="users" item="user" separator=",">
+            #{user.userId}
+        </foreach>
+        )
+    </update>
+
 </mapper>

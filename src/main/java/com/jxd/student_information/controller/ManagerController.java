@@ -5,6 +5,7 @@ import com.jxd.student_information.model.Manager;
 import com.jxd.student_information.service.IDeptService;
 import com.jxd.student_information.service.IManagerService;
 import com.jxd.student_information.service.IQualityService;
+import com.jxd.student_information.service.IUserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,49 +15,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 @Controller
 public class ManagerController {
 
     @Autowired
     IManagerService managerService;
-
     @Autowired
     IDeptService deptService;
-
+    @Autowired
+    IUserloginService userloginService;
     @Autowired
     IQualityService qualityService;
 
+    //xby
     @RequestMapping("/getAllManager")
     @ResponseBody
     public List<Map<String, Object>> getAllManager(String managerName) {
         return managerService.getAllManagerWithDept_name(managerName);
     }
 
+    //xby
     @RequestMapping("/getAllManagerByPage")
     @ResponseBody
     public List<Map<String, Object>> getAllManagerByPage(int pageSize, int currentPage, String managerName) {
         return managerService.getAllManagerWithDept_nameByPage(pageSize, currentPage, managerName);
     }
 
+    //xby
+
+    /**
+     * 添加部门主管信息时，将该主管 id 作为用户名，默认密码
+     * ，以及主管权限等级"2" 插入到用户登陆表中
+     * 该主管 id 通过 sql 语句查询
+     */
     @RequestMapping("/addManager")
     @ResponseBody
     public String addManager(String managerName, String deptName) {
-        boolean result = managerService.addManager(managerName, deptName);
+        String role = "2"; //部门主管的权限等级
+        String password = "123456"; //默认密码
+        boolean result = managerService.addManager(role,password,managerName, deptName);
         if (result == true) {
             return "添加成功";
         } else {
-            return "服务器响应失败";
+            return "添加失败，请稍后再试";
         }
     }
 
+    //xby
     @RequestMapping("/deleteManager")
     @ResponseBody
     public String deleteManagerById(int managerId) {
@@ -64,10 +69,15 @@ public class ManagerController {
         if (result == true) {
             return "删除成功";
         } else {
-            return "服务器响应失败";
+            return "删除失败，请稍后再试";
         }
     }
 
+    //xby
+
+    /**
+     * @return 返回的是一个 map ，包含 managerId 、managerName 、和 部门名称（部门表中的数据）
+     */
     @RequestMapping("/getManagerById")
     @ResponseBody
     public Map<String, Object> getManagerById(int managerId) {
@@ -80,6 +90,7 @@ public class ManagerController {
         return map;
     }
 
+    //xby
     @RequestMapping("/updateManagerById")
     @ResponseBody
     public String updateManagerById(int managerId, String managerName, String deptName) {
@@ -87,7 +98,7 @@ public class ManagerController {
         if (result == true) {
             return "修改成功";
         } else {
-            return "服务器响应失败";
+            return "修改成功，请稍后再试";
         }
     }
 

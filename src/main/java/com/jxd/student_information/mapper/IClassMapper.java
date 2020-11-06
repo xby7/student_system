@@ -7,14 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface IClassMapper extends BaseMapper<Class> {
 
     List<Map<String, Object>> selectAllClassWithTeacher_name();
@@ -24,6 +16,6 @@ public interface IClassMapper extends BaseMapper<Class> {
 
     boolean insertClass(@Param("teacherId") int teacherId);
 
-    boolean updateClassByNo(@Param("classNo") int classNo, @Param("teacherId") int teacherId);
+    boolean updateClassById(@Param("classNo") int classNo, @Param("teacherId") int teacherId);
 
 }

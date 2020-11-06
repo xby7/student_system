@@ -7,14 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface IStudentMapper extends BaseMapper<Student> {
     /**
      * 通过姓名、班期查找学生
@@ -31,6 +23,15 @@ public interface IStudentMapper extends BaseMapper<Student> {
      * @return
      */
     List<Map<String,Object>> getAllStudentByPage(@Param("student_name")String student_name, @Param("class_no")int class_no,@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+
+    /**
+     * 新增学员信息
+     * @param student 接收一个学员对象，里面封装了学员的信息
+     * @return 返回是否新增成功
+     */
+    boolean addStudents(Student student);
+
+    boolean delStudent(Integer studentId);
 
 
 }

@@ -25,7 +25,7 @@ public class JWTConfig {
      * addPathPatterns 用于添加需要拦截的请求。
      * excludePathPatterns 用于添加不需要拦截的请求。
      * 此处：
-     * 拦截所有请求，但是排除 登录请求 。
+     * 拦截 除登录请求 的所有请求。
      */
     @Bean(name = "JWTInterceptor")
     public WebMvcConfigurer JWTInterceptor() {
@@ -34,9 +34,9 @@ public class JWTConfig {
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(new JWTInterceptor())
                         // 拦截所有请求
-                        .addPathPatterns("/login/**");
+                        .addPathPatterns("/**")
                         // 不拦截 登录 请求
-                       //.excludePathPatterns("/login/**");
+                       .excludePathPatterns("/login/**");
             }
         };
     }

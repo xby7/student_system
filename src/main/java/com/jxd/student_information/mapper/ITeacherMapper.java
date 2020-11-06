@@ -7,14 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 public interface ITeacherMapper extends BaseMapper<Teacher> {
 
     /**
@@ -52,7 +44,9 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
      */
     List<String> getSequence();
 
-    boolean insertTeacher(@Param("teacherName") String teacherName);
+    boolean insertTeacher(@Param("role") String role,
+                          @Param("password") String password,
+                          @Param("teacherName") String teacherName);
 
     List<Teacher> selectAllTeacher(@Param("teacherName") String teacherName);
 
@@ -60,6 +54,6 @@ public interface ITeacherMapper extends BaseMapper<Teacher> {
                                          @Param("pageSize") int pageSize,
                                          @Param("teacherName") String teacherName);
 
-    boolean updateTeacherById(int teacherId,String teacherName);
+    boolean updateTeacherById(int teacherId, String teacherName);
 }
 

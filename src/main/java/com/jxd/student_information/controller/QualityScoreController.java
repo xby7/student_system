@@ -4,6 +4,7 @@ import com.jxd.student_information.model.QualityScore;
 import com.jxd.student_information.service.IQualityScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,14 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author xby
- * @since 2020-10-28
- */
 @Controller
 public class QualityScoreController {
     @Autowired

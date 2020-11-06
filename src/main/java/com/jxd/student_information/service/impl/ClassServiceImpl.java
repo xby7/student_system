@@ -41,7 +41,7 @@ public class ClassServiceImpl extends ServiceImpl<IClassMapper, Class> implement
     }
 
     @Override
-    public boolean updateClassByNo(int classNo, int teacherId) {
-        return classMapper.updateClassByNo(classNo,teacherId);
+    public boolean updateClassById(int classNo, int teacherId) {
+        return classMapper.updateClassById(classNo,teacherId);
     }
 }
