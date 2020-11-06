@@ -33,27 +33,4 @@
         </where>
         order by s.student_id limit #{pageIndex}, #{pageSize}
     </select>
-
-    <!--新增学员-->
-    <insert id="addStudents">
-        insert into student(student_name, sex, class_no, folk, birthday, marital_status, native_place, id_number, graduate_school, major, remark, img_path, dept_no,isdeleted)
-        values (#{studentName},#{sex},#{classNo},#{folk},#{birthday},#{maritalStatus},#{nativePlace},#{idNumber},#{graduateSchool},#{major},#{remark},#{imgPath},1,1);
---       新增到学校评价表
-        insert into evaluation_of_school(student_id,class_no)
-            values((select LAST_INSERT_ID()),#{classNo});
---       新增到部门评价表
-        insert into evaluation_of_dept(student_id,dept_no,period_no)
-            values((select student_id from student order by student_id DESC limit 1),1,1);
-        insert into evaluation_of_dept(student_id,dept_no,period_no)
-            values((select student_id from student order by student_id DESC limit 1),1,2);
-        insert into evaluation_of_dept(student_id,dept_no,period_no)
-            values((select student_id from student order by student_id DESC limit 1),1,3);
-        insert into evaluation_of_dept(student_id,dept_no,period_no)
-            values((select student_id from student order by student_id DESC limit 1),1,4);
---
-    </insert>
-    <update id="delStudent">
-        update student set isdeleted = 0
-        where student_id = #{studentId}
-    </update>
 </mapper>

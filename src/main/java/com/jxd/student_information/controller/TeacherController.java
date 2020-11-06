@@ -23,30 +23,39 @@ public class TeacherController {
     private ICourseService courseService;
 
 
+    /**
+     * 获取学生信息===教师
+     * @param student_name 学生姓名
+     * @param teacher_id    教师id
+     * @param curPage   分页的两个参数
+     * @param pageSize
+     * @return
+     * @Author cbb
+     */
     @RequestMapping("/getAllStuWithTeacher")
     @ResponseBody
-    public Map<String, Object> getAll(String student_name, String teacher_id, String curPage, String pageSize) {
-        if (teacher_id == "" || teacher_id == null) {
-            teacher_id = "0";
-        }
+    public Map<String, Object> getAllStuWithTeacher(String student_name, int teacher_id, int curPage, int pageSize) {
 
-        curPage = curPage == null ? "1" : curPage;
-        pageSize = pageSize == null ? "5" : pageSize;
+        curPage = curPage == 0 ? 1 : curPage;
+        pageSize = pageSize == 0 ? 5 : pageSize;
+
+
 
         Map<String, Object> map = new HashMap<>();
 
-        List<Map<String, Object>> totals = teacherService.getAllStuTotalsWithTeacher(student_name, Integer.parseInt(teacher_id));
-
-        List<Map<String, Object>> students = teacherService.getAllStuWithTeacherByPage(student_name,
-                Integer.parseInt(teacher_id),
-                Integer.parseInt(curPage),
-                Integer.parseInt(pageSize));
-
+        List<Map<String, Object>> totals = teacherService.getAllStuTotalsWithTeacher(student_name, teacher_id);
+        List<Map<String, Object>> students = teacherService.getAllStuWithTeacherByPage(student_name, teacher_id,
+                                                                                        curPage, pageSize);
         List<Map<String, Object>> tableColumnList = courseService.getAllCourseName();
 
         map.put("students", students);
         map.put("total", totals);
         map.put("tableNameList", tableColumnList);
+
+        for(int i=0;i<students.size();i++){
+            int res = (int)students.get(i).get("student_id");
+            System.out.println("TeacherController:"+res);
+        }
 
         return map;
     }

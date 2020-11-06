@@ -24,6 +24,8 @@ public class UserloginServiceImpl extends ServiceImpl<IUserloginMapper, Userlogi
     @Autowired
     IUserloginMapper userloginMapper;
 
+
+
     @Override
     public boolean repassword(List<Userlogin> users) {
         return userloginMapper.updatePassword(users);

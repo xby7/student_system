@@ -74,7 +74,7 @@ public class JWTConfig {
             }
         }
 
-        //跨域-----------恶心的一批，这个问题调了两天
+        //跨域-----------
         private void setCorsMappings(HttpServletRequest request, HttpServletResponse response){
             String origin = request.getHeader("Origin");
             response.setHeader("Access-Control-Allow-Origin", origin);

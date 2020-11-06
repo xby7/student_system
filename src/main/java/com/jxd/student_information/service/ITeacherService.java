@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface ITeacherService extends IService<Teacher> {
-    //List<Map<String,Object>> getAllStuWithTeacher(String student_name,int teacher_id);
 
-    List<Map<String, Object>> getAllStuWithTeacherByPage(String student_name, int teacher_id, int curPage, int pageSize);
-
-    List<Map<String, Object>> getAllStuTotalsWithTeacher(String student_name, int teacher_id);
+    //获取分页数据===教师（cbb）
+    List<Map<String,Object>> getAllStuWithTeacherByPage(String student_name,int teacher_id,int curPage,int pageSize);
+    //获取学生总数===教师(cbb)
+    List<Map<String,Object>> getAllStuTotalsWithTeacher(String student_name, int teacher_id);
 
     boolean addTeacher(String role, String password, String teacherName);
 

@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ICourseService extends IService<Course> {
-    //获取全部的课程名
+    //获取全部的课程名===教师（cbb）
     List<Map<String, Object>> getAllCourseName();
 }

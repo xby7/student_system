@@ -5,11 +5,14 @@
 
     <!--查询菜单，子菜单父菜单-->
     <select id="queryMenuInfo" resultType="map">
+
         select m.menu_id,url,name_en,name_zh,icon,component,parent_id,type,order_num
         from menu m
         left join user_menu u on m.menu_id = u.menu_id
         left join role r on u.role = r.role
         left join userlogin ul on ul.role = r.role
         where ul.user_id = #{userId}
+
     </select>
+
 </mapper>
