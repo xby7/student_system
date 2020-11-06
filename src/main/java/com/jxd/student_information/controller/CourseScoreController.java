@@ -18,14 +18,16 @@ public class CourseScoreController {
     @Autowired
     private ICourseScoreService courseScoreService;
 
-    /*教师对学生的打分*/
+    /**
+     * 教师对学生的打分
+     * @param courseScore 前台传回的json对象
+     * @return
+     * @Author cbb
+     */
     @RequestMapping("/updateStuScoreWithTeacher")
     @ResponseBody
-    public String updateStuScoreWithTeacher(@RequestBody() List<CourseScore> data) {
-//        System.out.println("++++++++++++++");
-//        System.out.println("/updateStuScoreWithTeacher+"+data.get(0).getScore());
-
-        boolean flag = courseScoreService.updateStuScoreWithTeacher(data);
+    public String updateStuScoreWithTeacher(@RequestBody() List<CourseScore> courseScore) {
+        boolean flag = courseScoreService.updateStuScoreWithTeacher(courseScore);
         if (flag) {
             return "success";
         } else {
@@ -33,7 +35,13 @@ public class CourseScoreController {
         }
     }
 
-    /*获取学生的成绩信息*/
+
+    /**
+     * 获取学生的成绩信息
+     * @param studentId 前台传回的学生id
+     * @return
+     * @Author cbb
+     */
     @RequestMapping("/getScoreByStudentId")
     @ResponseBody
     public Map<String, Object> getScoreByStudentId(int studentId){

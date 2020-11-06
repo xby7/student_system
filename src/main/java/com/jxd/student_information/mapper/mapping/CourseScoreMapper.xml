@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.ICourseScoreMapper">
-    <!--教师批量更新单个学生的所有成绩-->
+    <!--批量更新单个学生的所有成绩===教师（cbb）-->
     <update id="updateStuScoreWithTeacher" parameterType="java.util.List">
         update course_score
         <trim prefix="set" suffixOverrides=",">
@@ -22,10 +22,12 @@
         </foreach>
     </update>
 
-    <!--获取单个学生的成绩信息-->
+    <!--获取单个学生的成绩信息===教师（cbb）-->
     <select id="selectScoreWithStudentId" resultType="CourseScore">
         SELECT score,course_id,student_id FROM course_score
         WHERE student_id = #{studentId}
+        ORDER BY
+           course_id
     </select>
 
 </mapper>

@@ -2,4 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jxd.student_information.mapper.IEvaluationOfDeptMapper">
 
+    <!--查询单个学生评价信息===经理（cbb）-->
+    <select id="selectEvaluationByStuIdWithManager" resultType="EvaluationOfDept">
+        SELECT
+            overall_score,
+            evaluation_form_dept,
+            student_id,
+            period_no
+        FROM
+            evaluation_of_dept
+        WHERE
+            student_id = #{studentId}
+            AND period_no = #{periodNo}
+    </select>
+
+    <!--更新评价信息===经理（cbb）-->
+    <update id="updateStudentQualityWithManager" parameterType="EvaluationOfDept">
+        UPDATE evaluation_of_dept
+        SET manager_name = #{managerName},overall_score = #{overallScore},
+        evaluation_form_dept = #{evaluationFormDept} where student_id = #{studentId} and period_no = #{periodNo}
+    </update>
+
 </mapper>

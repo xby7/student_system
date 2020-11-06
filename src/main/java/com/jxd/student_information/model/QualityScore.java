@@ -11,5 +11,6 @@ public class QualityScore {
     private Integer qualityId;
     private Integer studentId;
     private Integer score;
+    private Integer periodNo;
 
 }

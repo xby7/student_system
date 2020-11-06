@@ -24,11 +24,13 @@ public class CourseScoreServiceImpl extends ServiceImpl<ICourseScoreMapper, Cour
     @Autowired
     private ICourseScoreMapper courseScoreMapper;
 
+    /*批量更新单个学生的所有品质分数===教师(cbb)*/
     @Override
     public boolean updateStuScoreWithTeacher(List<CourseScore> list) {
         return courseScoreMapper.updateStuScoreWithTeacher(list);
     }
 
+    /*根据学生id获取学生成绩信息===教师(cbb)*/
     @Override
     public List<Map<String, Object>> getScoreWithStudentId(int studentId) {
         return courseScoreMapper.selectScoreWithStudentId(studentId);

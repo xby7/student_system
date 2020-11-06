@@ -20,13 +20,64 @@
     </select>
 
     <insert id="insertManager">
-        insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}));
-        insert into userlogin (user_id,password,user_name,role) values
-        ((select last_insert_id()),#{password},#{managerName},#{role})
+        insert into manager (manager_name,dept_no) values (#{managerName},(select dept_no from dept where dept_name = #{deptName}))
     </insert>
 
     <update id="updateManagerById">
         update manager set manager_name = #{managerName},dept_no = (select dept_no from dept where dept_name = #{deptName})
         where manager_id = #{managerId}
     </update>
+
+    <!--获取总数===经理(cbb)-->
+    <select id="selectAllStuTotalsWithManager" resultType="java.util.HashMap">
+        ${sql}
+        <where>
+            <if test="managerId != 0">
+                manager_id = #{managerId}
+            </if>
+            <if test="studentName != null and studentName != ''">
+                and student_name like concat('%',#{studentName},'%')
+            </if>
+            <if test="periodNo != 0">
+                and q_period = #{periodNo}
+            </if>
+            <if test="periodNo != 0">
+                and e_period = #{periodNo}
+            </if>
+        </where>
+        GROUP BY
+        student_id
+        order by student_id
+    </select>
+
+    <!--分页数据===经理查询（cbb）-->
+    <select id="selectAllStuBypageWithManager" resultType="java.util.HashMap">
+        ${sql}
+        <where>
+            <if test="managerId != 0">
+                manager_id = #{managerId}
+            </if>
+            <if test="studentName != null and studentName != ''">
+                and student_name like concat('%',#{studentName},'%')
+            </if>
+            <if test="periodNo != 0">
+                and q_period = #{periodNo}
+            </if>
+            <if test="periodNo != 0">
+                and e_period = #{periodNo}
+            </if>
+        </where>
+        GROUP BY
+        student_id
+        order by student_id
+        limit #{pageIndex},#{pageSize}
+    </select>
+
+    <!--拼接的SQL语句======经理查询拼接的（cbb）-->
+    <select id="getSequenceWithManager" resultType="java.lang.String">
+       SELECT
+	    GROUP_CONCAT( DISTINCT CONCAT( 'MAX(IF(quality_name = ''', quality_name, ''', score, 0)) AS ''', quality_name, '''' ) )
+        FROM
+        quality
+    </select>
 </mapper>
