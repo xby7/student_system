@@ -88,6 +88,12 @@ public class TeacherController {
     }
 
     //xby
+
+    /**
+     * 删除教师信息时将用户表中的登录信息
+     * @param teacherId
+     * @return
+     */
     @RequestMapping("/deleteTeacher")
     @ResponseBody
     public String deleteTeacher(int teacherId) {

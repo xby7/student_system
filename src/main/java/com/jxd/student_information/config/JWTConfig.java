@@ -34,9 +34,9 @@ public class JWTConfig {
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(new JWTInterceptor())
                         // 拦截所有请求
-                        .addPathPatterns("/login/**");
+                        .addPathPatterns("/**")
                         // 不拦截 登录 请求
-                       //.excludePathPatterns("/login/**");
+                       .excludePathPatterns("/login/**");
             }
         };
     }
