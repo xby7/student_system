@@ -15,7 +15,12 @@ import java.util.Map;
  * @since 2020-10-28
  */
 public interface ICourseMapper extends BaseMapper<Course> {
-    //获取课程名
+
+    /**
+     * 获取课程名
+     * @return
+     * @Author cbb
+     */
     List<Map<String, Object>> selectAllCourseName();
 
 }

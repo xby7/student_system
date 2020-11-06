@@ -24,6 +24,7 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
     @Autowired
     private ITeacherMapper teacherMapper;
 
+    /*获取总数===教师(cbb)*/
     @Override
     public List<Map<String,Object>> getAllStuTotalsWithTeacher(String student_name, int teacher_id) {
         //获取动态拼接sql
@@ -49,6 +50,7 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
         return teacherMapper.selectAllStuTotalsWithTeacher(student_name,teacher_id,sql);
     }
 
+    /*获取分页后的数据===教师(cbb)*/
     @Override
     public List<Map<String, Object>> getAllStuWithTeacherByPage(String student_name,int teacher_id,int curPage, int pageSize) {
         //获取动态拼接sql

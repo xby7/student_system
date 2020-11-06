@@ -1,13 +1,11 @@
 package com.jxd.student_information.controller;
 
-import com.jxd.student_information.jwt.JwtUtil;
+import com.jxd.student_information.utils.JwtUtil;
 import com.jxd.student_information.model.Userlogin;
 import com.jxd.student_information.service.IUserloginService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,7 +31,13 @@ public class UserloginController {
     //private static final String SECRET = "**********模拟token****拦截器不生效，拦截后无法进入Controller*********" ;
 
 
-    //修改密码
+    /**
+     * 用户修改密码
+     * @param userId 用户id
+     * @param newPassword 新密码
+     * @return
+     * @Author cbb
+     */
     @RequestMapping("/updateUserPassword")
     @ResponseBody
     public String updateUserPWD(int userId,String newPassword){

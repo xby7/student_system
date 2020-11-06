@@ -16,9 +16,9 @@ import java.util.Map;
  */
 public interface IEvaluationOfSchoolService extends IService<EvaluationOfSchool> {
 
-    //根据学生id获取学生评价信息
+    //根据学生id获取学生评价信息===教师（cbb）
     EvaluationOfSchool getEvaluationWithStudentId(int studentId);
 
-    //教师评价学生
+    //评价学生===教师（cbb）
     boolean evaluatingStudent(EvaluationOfSchool evaluationOfSchool);
 }

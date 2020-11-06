@@ -16,8 +16,9 @@ import java.util.Map;
  * @since 2020-10-28
  */
 public interface ICourseScoreService extends IService<CourseScore> {
+    //批量更新单个学生的所有品质分数===教师(cbb)
     boolean updateStuScoreWithTeacher(List<CourseScore> list);
 
-    //根据学生id获取学生成绩信息
+    //根据学生id获取学生成绩信息===教师(cbb)
     List<Map<String, Object>> getScoreWithStudentId(int studentId);
 }
