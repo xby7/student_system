@@ -21,9 +21,11 @@ public class CourseScoreController {
     /*教师对学生的打分*/
     @RequestMapping("/updateStuScoreWithTeacher")
     @ResponseBody
-    public String updateStuScoreWithTeacher(@RequestBody() List<CourseScore> courseScore) {
+    public String updateStuScoreWithTeacher(@RequestBody() List<CourseScore> data) {
+//        System.out.println("++++++++++++++");
+//        System.out.println("/updateStuScoreWithTeacher+"+data.get(0).getScore());
 
-        boolean flag = courseScoreService.updateStuScoreWithTeacher(courseScore);
+        boolean flag = courseScoreService.updateStuScoreWithTeacher(data);
         if (flag) {
             return "success";
         } else {

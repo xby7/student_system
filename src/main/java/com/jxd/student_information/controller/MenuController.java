@@ -26,13 +26,9 @@ public class MenuController {
     @RequestMapping("/Aside/getMenus")
     @ResponseBody
     public List<Map<String, Object>> getMenus(String userId) {
-        System.out.println("---0-MenuController");
-        List<Map<String, Object>> list = menuService.queryMenuInfo(userId);
-        System.out.println("---1-MenuController");
-        for (Map<String, Object> map : list) {
-            System.out.println(map.get("menu_id"));
-        }
-        System.out.println("---2-MenuController");
-        return list;
+
+
+
+        return menuService.queryMenuInfo(userId);
     }
 }
