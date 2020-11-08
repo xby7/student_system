@@ -41,7 +41,8 @@ public class JWTConfig {
                         // 拦截所有请求
                         .addPathPatterns("/**")
                         // 不拦截 登录 请求
-                        .excludePathPatterns("/login/**");
+                        .excludePathPatterns("/login/**")
+                        .excludePathPatterns("/upload/**");
             }
         };
     }
