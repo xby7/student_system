@@ -11,6 +11,7 @@
             <if test="student_name != null and student_name != ''">
                 and f.student_name like concat('%',#{student_name},'%')
             </if>
+                and isdeleted = 1
         </where>
         GROUP BY
         student_id
@@ -26,6 +27,7 @@
             <if test="student_name != null and student_name != ''">
                 and f.student_name like concat('%',#{student_name},'%')
             </if>
+                and isdeleted = 1
         </where>
         GROUP BY
         student_id

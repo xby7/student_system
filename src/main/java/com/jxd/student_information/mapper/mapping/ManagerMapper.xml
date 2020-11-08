@@ -46,6 +46,7 @@
             <if test="periodNo != 0">
                 and e_period = #{periodNo}
             </if>
+                and isdeleted = 1
         </where>
         GROUP BY
         student_id
@@ -68,6 +69,7 @@
             <if test="periodNo != 0">
                 and e_period = #{periodNo}
             </if>
+                and isdeleted = 1
         </where>
         GROUP BY
         student_id
