@@ -64,6 +64,8 @@
     </select>
 
     <update id="updateTeacherById">
-        update teacher set teacher_name = #{teacherName} where teacher_id = #{teacherId}
+        update teacher set teacher_name = #{teacherName} where teacher_id = #{teacherId};
+        update userlogin set user_name = #{teacherName}
+        where user_id = #{teacherId}
     </update>
 </mapper>
