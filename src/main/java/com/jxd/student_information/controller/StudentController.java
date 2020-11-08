@@ -62,8 +62,7 @@ public class StudentController {
     @CrossOrigin
     public String upload(@RequestParam("file") MultipartFile multipartFile) throws Exception {
         // 文件存储位置，文件的目录要存在才行，可以先创建文件目录，然后进行存储
-        String filePath = "E:/frontworkspace/myfenli/src/assets/images/uplaod";
-
+        String filePath = "D:/LearnFile/project_final/student_system_front/src/assets/upload";//--------wy
         File file =new File(filePath);
         if(!file.exists()){
             file.mkdirs();
@@ -81,8 +80,8 @@ public class StudentController {
         File newFile= new File(filePath,filename);
         multipartFile.transferTo(newFile);
         String imagePath = newFile.getAbsolutePath().replaceAll("\\\\", "/");
-        imgUtil.setImgpath(imagePath);
-        System.out.println(imagePath);
+        imgUtil.setImgpath("upload/"+filename);//-----------------------------------------wy
+        //System.out.println(imagePath);//------------------------------------------------wy
         //返回文件名 前台通过固定地址+文件名的方法访问该图片 存储使用的是相对路径
         return imagePath;
     }
@@ -117,7 +116,7 @@ public class StudentController {
         student.setNativePlace(native_place);
         student.setRemark(remark);
 
-        img_path = imgUtil.getImgpath().substring(30);
+        img_path = imgUtil.getImgpath();
         student.setImgPath(img_path);
         System.out.println(student.getImgPath());
         student.setSex(sex);
@@ -166,7 +165,7 @@ public class StudentController {
         if (imgUtil.getImgpath()==null){
             student.setImgPath(img);
         }else {
-            img_path = imgUtil.getImgpath().substring(30);
+            img_path = imgUtil.getImgpath();
             student.setImgPath(img_path);
         }
         System.out.println(img);
