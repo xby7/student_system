@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,4 +107,19 @@ public class ClassController {
         }
     }
 
+    /**
+     * @return 所有班级号，用于渲染班级选择下拉框
+     */
+    @RequestMapping("/getAllClass_no")
+    @ResponseBody
+    public List<Integer> getAllClass_no() {
+
+        List<Integer> class_nos = new ArrayList<>();
+        List<Class> classess= classService.list();
+
+        for (Class classes: classess) {
+            class_nos.add(classes.getClassNo());
+        }
+        return class_nos;
+    }
 }

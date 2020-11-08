@@ -17,4 +17,7 @@ public interface IDeptMapper extends BaseMapper<Dept> {
                                    @Param("deptName") String deptName);
 
     boolean updateDeptById(@Param("deptNo") int deptNo, @Param("deptName") String deptName);
+
+    //lk
+    Integer getAllDeptNo(@Param("deptName")String deptName);
 }

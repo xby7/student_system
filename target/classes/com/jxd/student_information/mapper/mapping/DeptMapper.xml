@@ -13,6 +13,11 @@
         </if>
     </select>
 
+    <select id="getAllDeptNo" resultType="int">
+        select dept_no from dept
+        where dept_name = #{deptName}
+    </select>
+
     <select id="selectAllDeptByPage" resultType="Dept">
         select dept_no,dept_name from dept
         <if test="deptName != null and deptName != ''">

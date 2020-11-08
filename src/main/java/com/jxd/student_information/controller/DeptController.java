@@ -41,6 +41,18 @@ public class DeptController {
         return deptService.getAllDept(deptName);
     }
 
+
+    /**
+     * lk 通过部门名称找到部门号
+     * @param deptName
+     * @return
+     */
+    @RequestMapping("/getAllDeptNo")
+    @ResponseBody
+    public Integer getAllDeptNo(String deptName) {
+        return deptService.getAllDeptNo(deptName);
+    }
+
     //xby
 
     /**
