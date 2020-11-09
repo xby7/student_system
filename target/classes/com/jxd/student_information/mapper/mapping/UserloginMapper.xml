@@ -18,4 +18,8 @@
     <select id="selectAll" resultType="Userlogin">
         select * from userlogin where role !=0
     </select>
+
 </mapper>
+
+
+
