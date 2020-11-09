@@ -47,7 +47,13 @@ public interface IStudentMapper extends BaseMapper<Student> {
     boolean editStudent(Student student);
 
 
-
+    /**
+     * 用户查询学生信息
+     * @param studentId
+     * @return
+     * @Author cbb
+     */
+    Map<String, Object> selectStudentWithUserById(@Param("studentId") int studentId);
 
 
 
