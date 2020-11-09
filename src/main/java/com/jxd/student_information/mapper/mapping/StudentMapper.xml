@@ -112,6 +112,16 @@
         where student_id = #{studentId}
     </update>
 
+    <update id="delSelectStu">
+        update student set isdeleted = 0
+        where student_id in (
+        <foreach collection="stu_id" item="stu_ids" separator=",">
+        #{stu_ids}
+        </foreach>
+        )
+
+    </update>
+
     <update id="editStudent">
         update student set student_name = #{studentName}, sex = #{sex}, class_no = #{classNo},
         folk = #{folk}, birthday = #{birthday}, marital_status = #{maritalStatus}, phone = #{phone},

@@ -51,6 +51,13 @@ public class StudentServiceImpl extends ServiceImpl<IStudentMapper, Student> imp
     }
 
     @Override
+    public boolean delSelectStu(List<Integer> stu_id) {
+        return studentMapper.delSelectStu(stu_id);
+    }
+
+
+
+    @Override
     public Map<String, Object> getStudentWithUserById(int studentId) {
         return studentMapper.selectStudentWithUserById(studentId);
     }

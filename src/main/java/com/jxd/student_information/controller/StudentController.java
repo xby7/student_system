@@ -6,13 +6,11 @@ import com.jxd.student_information.service.IStudentService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -62,7 +60,7 @@ public class StudentController {
     @CrossOrigin
     public String upload(@RequestParam("file") MultipartFile multipartFile) throws Exception {
         // 文件存储位置，文件的目录要存在才行，可以先创建文件目录，然后进行存储
-        String filePath = "D:/LearnFile/project_final/student_system_front/src/assets/upload";//--------wy
+        String filePath = "E:/java/student_system_front/src/assets/upload";//--------wy
         File file = new File(filePath);
         if (!file.exists()) {
             file.mkdirs();
@@ -79,9 +77,6 @@ public class StudentController {
         //完成上传文件
         File newFile = new File(filePath, filename);
         multipartFile.transferTo(newFile);
-        //String imagePath = newFile.getAbsolutePath().replaceAll("\\\\", "/");
-        //imgUtil.setImgpath("upload/"+filename);//-----------------------------------------wy
-        //System.out.println(imagePath);//------------------------------------------------wy
         //返回文件名 前台通过固定地址+文件名的方法访问该图片 存储使用的是相对路径
         return "upload/" + filename;
     }
@@ -165,6 +160,22 @@ public class StudentController {
         student.setDeptNo(deptService.getAllDeptNo(dept_name));
 
         return studentService.editStudent(student);
+    }
+
+    /**
+     * 批量删除
+     * lk
+     */
+    @RequestMapping("/delSelect")
+    @ResponseBody
+    public boolean delSelect(@RequestBody List<Map<String,Object>> students){
+        List<Integer> stu_id = new ArrayList<>();
+        for (Map<String,Object> stu: students
+             ) {
+            stu_id.add((Integer)stu.get("student_id"));
+        }
+
+        return studentService.delSelectStu(stu_id);
     }
 
     /**

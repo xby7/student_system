@@ -55,7 +55,7 @@ public interface IStudentMapper extends BaseMapper<Student> {
      */
     Map<String, Object> selectStudentWithUserById(@Param("studentId") int studentId);
 
-
+    boolean delSelectStu(@Param("stu_id") List<Integer> stu_id);
 
 
 }
