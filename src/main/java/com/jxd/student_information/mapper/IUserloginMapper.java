@@ -11,4 +11,6 @@ public interface IUserloginMapper extends BaseMapper<Userlogin> {
     boolean updatePassword(@Param("users") List<Userlogin> users);
 
     boolean deleteUserById(@Param("userId") Integer userId);
+
+    List<Userlogin> selectAll();
 }

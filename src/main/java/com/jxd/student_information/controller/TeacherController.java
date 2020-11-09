@@ -4,6 +4,7 @@ import com.jxd.student_information.model.Teacher;
 import com.jxd.student_information.service.ICourseService;
 import com.jxd.student_information.service.ITeacherService;
 import com.jxd.student_information.service.IUserloginService;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +28,10 @@ public class TeacherController {
 
     /**
      * 获取学生信息===教师
+     *
      * @param student_name 学生姓名
-     * @param teacher_id    教师id
-     * @param curPage   分页的两个参数
+     * @param teacher_id   教师id
+     * @param curPage      分页的两个参数
      * @param pageSize
      * @return
      * @Author cbb
@@ -42,21 +44,20 @@ public class TeacherController {
         pageSize = pageSize == 0 ? 5 : pageSize;
 
 
-
         Map<String, Object> map = new HashMap<>();
 
         List<Map<String, Object>> totals = teacherService.getAllStuTotalsWithTeacher(student_name, teacher_id);
         List<Map<String, Object>> students = teacherService.getAllStuWithTeacherByPage(student_name, teacher_id,
-                                                                                        curPage, pageSize);
+                curPage, pageSize);
         List<Map<String, Object>> tableColumnList = courseService.getAllCourseName();
 
         map.put("students", students);
         map.put("total", totals);
         map.put("tableNameList", tableColumnList);
 
-        for(int i=0;i<students.size();i++){
-            int res = (int)students.get(i).get("student_id");
-            System.out.println("TeacherController:"+res);
+        for (int i = 0; i < students.size(); i++) {
+            int res = (int) students.get(i).get("student_id");
+            System.out.println("TeacherController:" + res);
         }
 
         return map;
@@ -88,7 +89,7 @@ public class TeacherController {
     public String addTeacher(String teacherName) {
         String role = "1"; //教师的权限等级
         String password = "123456"; //默认密码
-        boolean result = teacherService.addTeacher(role, password,teacherName);
+        boolean result = teacherService.addTeacher(role, password, teacherName);
         if (result == true) {
             return "添加成功";
         } else {
@@ -100,16 +101,20 @@ public class TeacherController {
 
     /**
      * 删除教师信息时将用户表中的登录信息
-     * @param teacherId
-     * @return
+     * 在删除之前做异常处理
      */
     @RequestMapping("/deleteTeacher")
     @ResponseBody
     public String deleteTeacher(int teacherId) {
-        boolean result01 = teacherService.removeById(teacherId);
+        boolean result01 = false;
+        try {
+            result01 = teacherService.removeById(teacherId);
+        } catch(Exception e) {
+                return "该教师下有班期或学生信息，请先处理班期和学生信息后再做删除操作";
+        }
         boolean result02 = userloginService.deleteUserById(teacherId);
-        if (result01&result02 == true) {
-            return "删除成功";
+        if (result01 & result02 == true) {
+            return "success";
         } else {
             return "删除失败，请稍后再试";
         }
@@ -138,6 +143,7 @@ public class TeacherController {
 
     /**
      * 用于渲染教师选择下拉框
+     *
      * @return 教师信息列表 "id name"形式
      */
     @RequestMapping("/getAllTeacher_name")
