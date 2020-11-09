@@ -167,5 +167,17 @@ public class StudentController {
         return studentService.editStudent(student);
     }
 
+    /**
+     * 获取学生信息===用户
+     * @param studentId
+     * @return
+     * @Author cbb
+     */
+    @RequestMapping("/getStudentWithUserById")
+    @ResponseBody
+    public Map<String, Object> getStudentWithUserById(int studentId){
+        return studentService.getStudentWithUserById(studentId);
+    }
+
 
 }

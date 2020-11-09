@@ -50,4 +50,9 @@ public class StudentServiceImpl extends ServiceImpl<IStudentMapper, Student> imp
         return studentMapper.editStudent(student);
     }
 
+    @Override
+    public Map<String, Object> getStudentWithUserById(int studentId) {
+        return studentMapper.selectStudentWithUserById(studentId);
+    }
+
 }

@@ -82,7 +82,7 @@
     <!--拼接的SQL语句======经理查询拼接的（cbb）-->
     <select id="getSequenceWithManager" resultType="java.lang.String">
        SELECT
-	    GROUP_CONCAT( DISTINCT CONCAT( 'MAX(IF(quality_name = ''', quality_name, ''', score, 0)) AS ''', quality_name, '''' ) )
+	    GROUP_CONCAT( DISTINCT CONCAT( 'MAX(IF(quality_name = ''', quality_name, ''', score, null)) AS ''', quality_name, '''' ) )
         FROM
         quality
     </select>

@@ -128,4 +128,29 @@
         where
         student_id = #{studentId};
     </update>
+
+    <!--查询学生信息===用户（cbb）-->
+    <select id="selectStudentWithUserById" resultType="java.util.Map">
+        SELECT
+            student_id,
+            student_name,
+            sex,
+            folk,
+            birthday,
+            native_place,
+            marital_status,
+            id_number,
+            graduate_school,
+            major,
+            img_path,
+            remark,
+            class_no,
+            phone,
+            dept_name
+        FROM
+            student s
+            LEFT JOIN dept d ON d.dept_no = s.dept_no
+        WHERE
+            student_id = #{studentId}
+    </select>
 </mapper>

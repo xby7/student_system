@@ -16,4 +16,7 @@ public interface IStudentService extends IService<Student> {
     boolean delStudent(Integer studentId);
 
     boolean editStudent(Student student);
+
+    //获取学生信息===用户（cbb）
+    Map<String,Object> getStudentWithUserById(int studentId);
 }

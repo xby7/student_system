@@ -37,7 +37,7 @@
     <!--拼接的SQL语句======教师查询拼接的（cbb）-->
     <select id="getSequence" resultType="java.lang.String">
        SELECT
-	    GROUP_CONCAT( DISTINCT CONCAT( 'MAX(IF(course_name = ''', course_name, ''', score, 0)) AS ''', course_name, '''' ) )
+	    GROUP_CONCAT( DISTINCT CONCAT( 'MAX(IF(course_name = ''', course_name, ''', score, null)) AS ''', course_name, '''' ) )
         FROM
         course
     </select>
