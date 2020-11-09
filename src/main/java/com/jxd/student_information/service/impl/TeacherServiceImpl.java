@@ -30,17 +30,18 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
         //获取动态拼接sql
         List<String> dynamicSequence = teacherMapper.getSequence();
         //手动与固定列拼接
-        String sql ="SELECT f.student_id,f.student_name,sex,folk,native_place,graduate_school,f.teacher_id,overall_score,evaluation_form_school,"+
+        String sql ="SELECT f.student_id,f.student_name,sex,folk,native_place,graduate_school,f.teacher_id," +
+                "overall_score,evaluation_form_school,isdeleted,"+
                 dynamicSequence.get(dynamicSequence.size() - 1) +
                 " FROM " +
                 " (" +
-                " SELECT e.student_id,student_name,sex,folk,native_place,graduate_school,e.teacher_id,course_name,score"+
+                " SELECT e.student_id,student_name,sex,folk,native_place,graduate_school,e.teacher_id,course_name,score,isdeleted"+
                 " FROM " +
                 " (" +
-                " SELECT d.student_id,student_name,sex,folk,graduate_school,native_place,score,course_id,d.teacher_id" +
+                " SELECT d.student_id,student_name,sex,folk,graduate_school,native_place,score,course_id,d.teacher_id,isdeleted" +
                 " FROM " +
                 " (" +
-                " SELECT student_id,student_name,sex,folk,graduate_school,native_place,teacher_id" +
+                " SELECT student_id,student_name,sex,folk,graduate_school,native_place,teacher_id,isdeleted" +
                 " FROM student s" +
                 " LEFT JOIN class c ON c.class_no = s.class_no) d" +
                 " LEFT JOIN course_score cs ON d.student_id = cs.student_id) e" +
@@ -56,17 +57,18 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
         //获取动态拼接sql
         List<String> dynamicSequence = teacherMapper.getSequence();
         //手动与固定列拼接
-        String sql ="SELECT f.student_id,f.student_name,sex,folk,native_place,graduate_school,f.teacher_id,overall_score,evaluation_form_school,"+
+        String sql ="SELECT f.student_id,f.student_name,sex,folk,native_place,graduate_school,f.teacher_id," +
+                "overall_score,evaluation_form_school,isdeleted,"+
                 dynamicSequence.get(dynamicSequence.size() - 1) +
                 " FROM " +
                 " (" +
-                " SELECT e.student_id,student_name,sex,folk,native_place,graduate_school,e.teacher_id,course_name,score"+
+                " SELECT e.student_id,student_name,sex,folk,native_place,graduate_school,e.teacher_id,course_name,score,isdeleted"+
                 " FROM " +
                 " (" +
-                " SELECT d.student_id,student_name,sex,folk,graduate_school,native_place,score,course_id,d.teacher_id" +
+                " SELECT d.student_id,student_name,sex,folk,graduate_school,native_place,score,course_id,d.teacher_id,isdeleted" +
                 " FROM " +
                 " (" +
-                " SELECT student_id,student_name,sex,folk,graduate_school,native_place,teacher_id" +
+                " SELECT student_id,student_name,sex,folk,graduate_school,native_place,teacher_id,isdeleted" +
                 " FROM student s" +
                 " LEFT JOIN class c ON c.class_no = s.class_no) d" +
                 " LEFT JOIN course_score cs ON d.student_id = cs.student_id) e" +

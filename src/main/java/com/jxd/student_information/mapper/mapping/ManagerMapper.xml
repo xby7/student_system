@@ -27,7 +27,9 @@
 
     <update id="updateManagerById">
         update manager set manager_name = #{managerName},dept_no = (select dept_no from dept where dept_name = #{deptName})
-        where manager_id = #{managerId}
+        where manager_id = #{managerId};
+        update userlogin set user_name = #{managerName}
+        where user_id = #{managerId}
     </update>
 
     <!--获取总数===经理(cbb)-->
@@ -46,6 +48,7 @@
             <if test="periodNo != 0">
                 and e_period = #{periodNo}
             </if>
+                and isdeleted = 1
         </where>
         GROUP BY
         student_id
@@ -68,6 +71,7 @@
             <if test="periodNo != 0">
                 and e_period = #{periodNo}
             </if>
+                and isdeleted = 1
         </where>
         GROUP BY
         student_id

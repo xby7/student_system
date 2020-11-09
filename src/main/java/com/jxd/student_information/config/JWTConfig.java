@@ -6,6 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -34,9 +39,10 @@ public class JWTConfig {
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(new JWTInterceptor())
                         // 拦截所有请求
-                        .addPathPatterns("/login/**");
+                        .addPathPatterns("/**")
                         // 不拦截 登录 请求
-                       //.excludePathPatterns("/login/**");
+                        .excludePathPatterns("/login/**")
+                        .excludePathPatterns("/upload/**");
             }
         };
     }
@@ -75,7 +81,7 @@ public class JWTConfig {
         }
 
         //跨域-----------
-        private void setCorsMappings(HttpServletRequest request, HttpServletResponse response){
+        private void setCorsMappings(HttpServletRequest request, HttpServletResponse response) {
             String origin = request.getHeader("Origin");
             response.setHeader("Access-Control-Allow-Origin", origin);
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
@@ -83,5 +89,7 @@ public class JWTConfig {
             response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization");
             response.setHeader("Access-Control-Allow-Credentials", "true");
         }
+
+
     }
 }
