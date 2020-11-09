@@ -79,7 +79,7 @@ public class UserloginController {
     @RequestMapping("/getAllUserlogin")
     @ResponseBody
     public List<Userlogin> getAllUserlogin() {
-        return userloginService.list();
+        return userloginService.getAllUserlogin();
     }
 
     //xby

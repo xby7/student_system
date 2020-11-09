@@ -34,4 +34,9 @@ public class UserloginServiceImpl extends ServiceImpl<IUserloginMapper, Userlogi
     public boolean deleteUserById(Integer userId) {
         return userloginMapper.deleteUserById(userId);
     }
+
+    @Override
+    public List<Userlogin> getAllUserlogin() {
+        return userloginMapper.selectAll();
+    }
 }

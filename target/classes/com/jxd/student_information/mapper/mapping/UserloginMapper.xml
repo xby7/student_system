@@ -15,4 +15,7 @@
         delete from userlogin where user_id = #{userId}
     </delete>
 
+    <select id="selectAll" resultType="Userlogin">
+        select * from userlogin where role !=0
+    </select>
 </mapper>
