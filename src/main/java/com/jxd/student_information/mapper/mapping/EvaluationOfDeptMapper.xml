@@ -8,7 +8,8 @@
             overall_score,
             evaluation_form_dept,
             student_id,
-            period_no
+            period_no,
+            manager_name
         FROM
             evaluation_of_dept
         WHERE

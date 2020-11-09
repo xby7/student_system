@@ -60,7 +60,7 @@ public class StudentController {
     @CrossOrigin
     public String upload(@RequestParam("file") MultipartFile multipartFile) throws Exception {
         // 文件存储位置，文件的目录要存在才行，可以先创建文件目录，然后进行存储
-        String filePath = "E:/java/student_system_front/src/assets/upload";//--------wy
+        String filePath = "D:/LearnFile/project_final/student_system_front/src/assets/upload";//--------wy
         File file = new File(filePath);
         if (!file.exists()) {
             file.mkdirs();
