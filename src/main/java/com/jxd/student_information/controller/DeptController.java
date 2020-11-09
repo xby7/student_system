@@ -44,6 +44,7 @@ public class DeptController {
 
     /**
      * lk 通过部门名称找到部门号
+     *
      * @param deptName
      * @return
      */
@@ -79,12 +80,21 @@ public class DeptController {
     }
 
     //xby
+
+    /**
+     * 在删除之前做异常处理
+     */
     @RequestMapping("/deleteDept")
     @ResponseBody
     public String deleteDept(int deptNo) {
-        boolean result = deptService.removeById(deptNo);
+        boolean result = false;
+        try {
+            result = deptService.removeById(deptNo);
+        } catch (Exception e) {
+            return "该部门下有经理或学生信息，请先处理部门经理和学生信息后再做删除操作";
+        }
         if (result == true) {
-            return "删除成功";
+            return "success";
         } else {
             return "删除失败，请稍后再试";
         }
