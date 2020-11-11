@@ -123,12 +123,16 @@ public class DeptController {
     @RequestMapping("/batchdeleteDept")
     @ResponseBody
     public String batchdelete(@RequestBody List<Dept> depts) {
+        boolean result = true;
         for (Dept dept : depts
         ) {
             String result01 = deleteDept(dept.getDeptNo());
             if (!"success".equals(result01)) {
-                return result01;
+                result = false;
             }
+        }
+        if (!result){
+            return "有经理或学生信息的部门未删除，请先处理部门经理和学生信息后再做删除操作";
         }
         return "success";
     }

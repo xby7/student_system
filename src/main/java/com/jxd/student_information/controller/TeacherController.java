@@ -163,12 +163,16 @@ public class TeacherController {
     @RequestMapping("/batchdeleteTeacher")
     @ResponseBody
     public String batchdelete(@RequestBody List<Teacher> teachers) {
+        boolean result = true;
         for (Teacher teacher : teachers
         ) {
             String result01 = deleteTeacher(teacher.getTeacherId());
             if (!"success".equals(result01)) {
-                return result01;
+                result = false;
             }
+        }
+        if (!result) {
+            return "有经理或学生信息的部门未删除，请先处理部门经理和学生信息后再做删除操作";
         }
         return "success";
     }
