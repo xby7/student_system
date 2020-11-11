@@ -39,4 +39,10 @@ public class UserloginServiceImpl extends ServiceImpl<IUserloginMapper, Userlogi
     public List<Userlogin> getAllUserlogin() {
         return userloginMapper.selectAll();
     }
+
+    @Override
+    public List<Userlogin> getAllUserloginByPage(int pageSize, int currentPage) {
+        int pageStart = (currentPage - 1) * pageSize;
+        return userloginMapper.selectAllByPage(pageStart, pageSize);
+    }
 }

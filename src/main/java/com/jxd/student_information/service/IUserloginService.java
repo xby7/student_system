@@ -20,4 +20,6 @@ public interface IUserloginService extends IService<Userlogin> {
     boolean deleteUserById(Integer userId);
 
     List<Userlogin> getAllUserlogin();
+
+    List<Userlogin> getAllUserloginByPage(int pageSize, int currentPage);
 }

@@ -13,4 +13,6 @@ public interface IUserloginMapper extends BaseMapper<Userlogin> {
     boolean deleteUserById(@Param("userId") Integer userId);
 
     List<Userlogin> selectAll();
+
+    List<Userlogin> selectAllByPage(int pageStart, int pageSize);
 }

@@ -28,7 +28,8 @@ public class UserloginController {
 
     /**
      * 用户修改密码
-     * @param userId 用户id
+     *
+     * @param userId      用户id
      * @param newPassword 新密码
      * @return
      * @Author cbb
@@ -96,5 +97,11 @@ public class UserloginController {
         } else {
             return "密码重置失败，请稍后再试";
         }
+    }
+
+    @RequestMapping("/getAllUserloginByPage")
+    @ResponseBody
+    public List<Userlogin> getAllUserloginByPage(int pageSize, int currentPage) {
+        return userloginService.getAllUserloginByPage(pageSize, currentPage);
     }
 }

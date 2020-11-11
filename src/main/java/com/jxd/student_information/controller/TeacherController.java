@@ -1,12 +1,14 @@
 package com.jxd.student_information.controller;
 
 import com.jxd.student_information.model.Teacher;
+import com.jxd.student_information.model.Userlogin;
 import com.jxd.student_information.service.ICourseService;
 import com.jxd.student_information.service.ITeacherService;
 import com.jxd.student_information.service.IUserloginService;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -109,8 +111,8 @@ public class TeacherController {
         boolean result01 = false;
         try {
             result01 = teacherService.removeById(teacherId);
-        } catch(Exception e) {
-                return "该教师下有班期或学生信息，请先处理班期和学生信息后再做删除操作";
+        } catch (Exception e) {
+            return "该教师下有班期或学生信息，请先处理班期和学生信息后再做删除操作";
         }
         boolean result02 = userloginService.deleteUserById(teacherId);
         if (result01 & result02 == true) {
@@ -156,5 +158,18 @@ public class TeacherController {
             teacher_names.add(teacher.getTeacherId() + " " + teacher.getTeacherName());
         }
         return teacher_names;
+    }
+
+    @RequestMapping("/batchdeleteTeacher")
+    @ResponseBody
+    public String batchdelete(@RequestBody List<Teacher> teachers) {
+        for (Teacher teacher : teachers
+        ) {
+            String result01 = deleteTeacher(teacher.getTeacherId());
+            if (!"success".equals(result01)) {
+                return result01;
+            }
+        }
+        return "success";
     }
 }

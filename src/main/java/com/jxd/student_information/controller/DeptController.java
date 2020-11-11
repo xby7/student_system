@@ -4,6 +4,7 @@ import com.jxd.student_information.model.Dept;
 import com.jxd.student_information.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -117,6 +118,19 @@ public class DeptController {
         } else {
             return "更新失败，请稍后再试";
         }
+    }
+
+    @RequestMapping("/batchdeleteDept")
+    @ResponseBody
+    public String batchdelete(@RequestBody List<Dept> depts) {
+        for (Dept dept : depts
+        ) {
+            String result01 = deleteDept(dept.getDeptNo());
+            if (!"success".equals(result01)) {
+                return result01;
+            }
+        }
+        return "success";
     }
 }
 

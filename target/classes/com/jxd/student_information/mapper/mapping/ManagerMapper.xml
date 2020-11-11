@@ -86,4 +86,12 @@
         FROM
         quality
     </select>
+
+    <delete id="batchdelete">
+        delete from manager where manager_id in (
+        <foreach collection="managerIds" item="managerId" separator=",">
+            #{managerId}
+        </foreach>
+        )
+    </delete>
 </mapper>

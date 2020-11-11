@@ -19,6 +19,12 @@
         select * from userlogin where role !=0
     </select>
 
+    <select id="selectAllByPage" resultType="Userlogin">
+        select * from userlogin where role !=0
+        order by user_id
+        limit #{pageStart},#{pageSize}
+    </select>
+
 </mapper>
 
 
