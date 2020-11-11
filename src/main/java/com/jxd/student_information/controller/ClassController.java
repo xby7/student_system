@@ -6,6 +6,7 @@ import com.jxd.student_information.service.IClassService;
 import com.jxd.student_information.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -115,11 +116,33 @@ public class ClassController {
     public List<Integer> getAllClass_no() {
 
         List<Integer> class_nos = new ArrayList<>();
-        List<Class> classess= classService.list();
+        List<Class> classess = classService.list();
 
-        for (Class classes: classess) {
+        for (Class classes : classess) {
             class_nos.add(classes.getClassNo());
         }
         return class_nos;
+    }
+
+    //xby
+
+    /**
+     * 根据classno批量删除
+     *
+     * @return
+     */
+    @RequestMapping("/batchdeleteClass")
+    @ResponseBody
+    public String batchdelete(@RequestBody List<Map<String, Object>> classs) {
+        List<Integer> class_nos = new ArrayList<>();
+        for (Map aClass : classs) {
+            class_nos.add((Integer) aClass.get("class_no"));
+        }
+        boolean result = classService.batchdelete(class_nos);
+        if (result == true) {
+            return "批量删除成功";
+        } else {
+            return "批量删除失败，请稍后再试";
+        }
     }
 }

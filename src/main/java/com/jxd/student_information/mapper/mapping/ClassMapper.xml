@@ -21,4 +21,12 @@
     <update id="updateClassById">
         update class set teacher_id = #{teacherId} where class_no = #{classNo}
     </update>
+
+    <delete id="batchdelete">
+        delete from class where class_no in (
+        <foreach collection="classNos" item="classno" separator=",">
+            #{classno}
+        </foreach>
+        )
+    </delete>
 </mapper>

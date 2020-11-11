@@ -16,4 +16,5 @@ public interface IClassService extends IService<Class> {
 
     boolean updateClassById(int classNo, int teacherId);
 
+    boolean batchdelete(List<Integer> classNos);
 }

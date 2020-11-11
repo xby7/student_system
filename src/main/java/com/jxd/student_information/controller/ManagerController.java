@@ -8,9 +8,11 @@ import com.jxd.student_information.service.IQualityService;
 import com.jxd.student_information.service.IUserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -132,5 +134,20 @@ public class ManagerController {
         map.put("total", totals);
         map.put("tableNameList", tableColumnList);
         return map;
+    }
+
+    @RequestMapping("/batchdeleteManager")
+    @ResponseBody
+    public String batchdelete(@RequestBody List<Map<String, Object>> managers) {
+        List<Integer> managerIds = new ArrayList<>();
+        for (Map manager : managers) {
+            managerIds.add((Integer) manager.get("manager_id"));
+        }
+        boolean result = managerService.batchdelete(managerIds);
+        if (result == true) {
+            return "批量删除成功";
+        } else {
+            return "批量删除失败，请稍后再试";
+        }
     }
 }

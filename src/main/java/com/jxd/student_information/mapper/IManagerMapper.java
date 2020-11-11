@@ -63,4 +63,6 @@ public interface IManagerMapper extends BaseMapper<Manager> {
      * @Author cbb
      */
     List<String> getSequenceWithManager();
+
+    boolean batchdelete(@Param("managerIds") List<Integer> managerIds);
 }

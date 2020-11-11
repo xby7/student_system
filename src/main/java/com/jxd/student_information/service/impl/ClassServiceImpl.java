@@ -44,4 +44,9 @@ public class ClassServiceImpl extends ServiceImpl<IClassMapper, Class> implement
     public boolean updateClassById(int classNo, int teacherId) {
         return classMapper.updateClassById(classNo,teacherId);
     }
+
+    @Override
+    public boolean batchdelete(List<Integer> classNos) {
+        return classMapper.batchdelete(classNos);
+    }
 }

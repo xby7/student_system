@@ -18,4 +18,5 @@ public interface IClassMapper extends BaseMapper<Class> {
 
     boolean updateClassById(@Param("classNo") int classNo, @Param("teacherId") int teacherId);
 
+    boolean batchdelete(@Param("classNos") List<Integer> classNos);
 }

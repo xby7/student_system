@@ -104,4 +104,9 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
         return managerMapper.selectAllStuTotalsWithManager(studentName,managerId,periodNo,sql);
     }
 
+    @Override
+    public boolean batchdelete(List<Integer> managerIds) {
+        return managerMapper.batchdelete(managerIds);
+    }
+
 }

@@ -20,4 +20,6 @@ public interface IManagerService extends IService<Manager> {
     List<Map<String,Object>> getAllStuWithManagerByPage(String studentName,int managerId,int periodNo,int curPage,int pageSize);
     //获取总数===经理(cbb)
     List<Map<String,Object>> getAllStuTotalsWithManager(String studentName, int managerId,int periodNo);
+
+    boolean batchdelete(List<Integer> managerIds);
 }
