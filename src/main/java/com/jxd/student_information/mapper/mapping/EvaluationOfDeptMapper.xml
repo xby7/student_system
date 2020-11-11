@@ -7,6 +7,8 @@
         SELECT
             overall_score,
             evaluation_form_dept,
+            dept_no,
+            job,
             student_id,
             period_no,
             manager_name
@@ -20,8 +22,12 @@
     <!--更新评价信息===经理（cbb）-->
     <update id="updateStudentQualityWithManager" parameterType="EvaluationOfDept">
         UPDATE evaluation_of_dept
-        SET manager_name = #{managerName},overall_score = #{overallScore},
-        evaluation_form_dept = #{evaluationFormDept} where student_id = #{studentId} and period_no = #{periodNo}
+        SET
+        manager_name = #{managerName},
+        overall_score = #{overallScore},
+        evaluation_form_dept = #{evaluationFormDept},
+        job=#{job}
+         where student_id = #{studentId} and period_no = #{periodNo}
     </update>
 
 </mapper>

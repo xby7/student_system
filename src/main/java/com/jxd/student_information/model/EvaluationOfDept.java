@@ -9,7 +9,7 @@ public class EvaluationOfDept {
     @TableId
     private Integer id;
     private Integer studentId;
-    private String deptName;
+    private Integer deptNo;
     private String job;
     private String managerName;
     private Integer overallScore;

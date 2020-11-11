@@ -41,7 +41,7 @@ public class EvaluationOfDeptController {
     @RequestMapping("/evaluatingStudentWithManager")
     @ResponseBody
     public String evaluatingStudentWithManager(String managerName,int studentId,int periodNo,
-                                               int overallScore,String evaluationFormDept){
+                                               int overallScore,String evaluationFormDept,String job){
 
         EvaluationOfDept evaluationOfDept = new EvaluationOfDept();
         evaluationOfDept.setManagerName(managerName);
@@ -49,6 +49,7 @@ public class EvaluationOfDeptController {
         evaluationOfDept.setPeriodNo(periodNo);
         evaluationOfDept.setOverallScore(overallScore);
         evaluationOfDept.setEvaluationFormDept(evaluationFormDept);
+        evaluationOfDept.setJob(job);
 
         boolean flag = evaluationOfDeptService.evaluatingStudentWithManager(evaluationOfDept);
         if (flag){
