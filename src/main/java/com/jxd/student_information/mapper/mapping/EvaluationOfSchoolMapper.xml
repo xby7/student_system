@@ -4,7 +4,7 @@
 
     <!--查询单个学生评价信息===教师（cbb）-->
     <select id="selectEvaluationByStuId" resultType="EvaluationOfSchool">
-        SELECT overall_score,evaluation_form_school,student_id,teacher_name FROM evaluation_of_school WHERE student_id = #{studentId}
+        SELECT overall_score,class_no,evaluation_form_school,student_id,teacher_name FROM evaluation_of_school WHERE student_id = #{studentId}
     </select>
 
     <!--更新评价信息===教师（cbb）-->

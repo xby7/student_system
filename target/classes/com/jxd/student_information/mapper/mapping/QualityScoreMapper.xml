@@ -29,5 +29,8 @@
         <foreach collection="list" item="QualityScore" index="index">
             and student_id = #{QualityScore.studentId}
         </foreach>
+        <foreach collection="list" item="QualityScore" index="index">
+            and period_no = #{QualityScore.periodNo}
+        </foreach>
     </update>
 </mapper>

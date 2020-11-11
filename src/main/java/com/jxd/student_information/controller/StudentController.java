@@ -1,7 +1,9 @@
 package com.jxd.student_information.controller;
 
 import com.jxd.student_information.model.Student;
+import com.jxd.student_information.service.ICourseService;
 import com.jxd.student_information.service.IDeptService;
+import com.jxd.student_information.service.IQualityService;
 import com.jxd.student_information.service.IStudentService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class StudentController {
@@ -22,6 +21,11 @@ public class StudentController {
 
     @Autowired
     private IDeptService deptService;
+
+    @Autowired
+    private ICourseService courseService;
+    @Autowired
+    private IQualityService qualityService;
 
     Student student = new Student();
 
@@ -190,5 +194,21 @@ public class StudentController {
         return studentService.getStudentWithUserById(studentId);
     }
 
+    /**
+     *
+     * @return 动态表头
+     */
+    @RequestMapping("/getTableHeadOfScore")
+    @ResponseBody
+    public Map<String, Object> getTableHeadOfScore() {
+
+        Map<String, Object> map = new HashMap<>();
+
+        List<Map<String, Object>> table_quality = qualityService.getAllQualityName();
+        List<Map<String, Object>> table_course= courseService.getAllCourseName();
+        map.put("table_quality", table_quality);
+        map.put("table_course",table_course);
+        return map;
+    }
 
 }
