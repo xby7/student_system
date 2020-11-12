@@ -30,23 +30,14 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
         //获取动态拼接sql
         List<String> dynamicSequence = teacherMapper.getSequence();
         //手动与固定列拼接
-        String sql ="SELECT f.student_id,f.student_name,sex,folk,native_place,graduate_school,f.teacher_id," +
-                "overall_score,evaluation_form_school,isdeleted,"+
+        String sql ="SELECT s.student_id,student_name,sex,native_place,graduate_school,teacher_id,overall_score," +
+                "evaluation_form_school,isdeleted,score,course_name," +
                 dynamicSequence.get(dynamicSequence.size() - 1) +
-                " FROM " +
-                " (" +
-                " SELECT e.student_id,student_name,sex,folk,native_place,graduate_school,e.teacher_id,course_name,score,isdeleted"+
-                " FROM " +
-                " (" +
-                " SELECT d.student_id,student_name,sex,folk,graduate_school,native_place,score,course_id,d.teacher_id,isdeleted" +
-                " FROM " +
-                " (" +
-                " SELECT student_id,student_name,sex,folk,graduate_school,native_place,teacher_id,isdeleted" +
-                " FROM student s" +
-                " LEFT JOIN class c ON c.class_no = s.class_no) d" +
-                " LEFT JOIN course_score cs ON d.student_id = cs.student_id) e" +
-                " LEFT JOIN course c ON e.course_id = c.course_id) f" +
-                " LEFT JOIN evaluation_of_school eos ON eos.student_id = f.student_id ";
+                " FROM student s " +
+                " LEFT JOIN class c ON s.class_no = c.class_no " +
+                " LEFT JOIN course_score cs ON s.student_id = cs.student_id" +
+                " LEFT JOIN course co ON co.course_id = cs.course_id " +
+                " LEFT JOIN evaluation_of_school eos ON s.student_id = eos.student_id";
 
         return teacherMapper.selectAllStuTotalsWithTeacher(student_name,teacher_id,sql);
     }
@@ -57,23 +48,14 @@ public class TeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> imp
         //获取动态拼接sql
         List<String> dynamicSequence = teacherMapper.getSequence();
         //手动与固定列拼接
-        String sql ="SELECT f.student_id,f.student_name,sex,folk,native_place,graduate_school,f.teacher_id," +
-                "overall_score,evaluation_form_school,isdeleted,"+
+        String sql ="SELECT s.student_id,student_name,sex,native_place,graduate_school,teacher_id,overall_score," +
+                "evaluation_form_school,isdeleted,score,course_name," +
                 dynamicSequence.get(dynamicSequence.size() - 1) +
-                " FROM " +
-                " (" +
-                " SELECT e.student_id,student_name,sex,folk,native_place,graduate_school,e.teacher_id,course_name,score,isdeleted"+
-                " FROM " +
-                " (" +
-                " SELECT d.student_id,student_name,sex,folk,graduate_school,native_place,score,course_id,d.teacher_id,isdeleted" +
-                " FROM " +
-                " (" +
-                " SELECT student_id,student_name,sex,folk,graduate_school,native_place,teacher_id,isdeleted" +
-                " FROM student s" +
-                " LEFT JOIN class c ON c.class_no = s.class_no) d" +
-                " LEFT JOIN course_score cs ON d.student_id = cs.student_id) e" +
-                " LEFT JOIN course c ON e.course_id = c.course_id) f" +
-                " LEFT JOIN evaluation_of_school eos ON eos.student_id = f.student_id ";
+                " FROM student s " +
+                " LEFT JOIN class c ON s.class_no = c.class_no " +
+                " LEFT JOIN course_score cs ON s.student_id = cs.student_id" +
+                " LEFT JOIN course co ON co.course_id = cs.course_id " +
+                " LEFT JOIN evaluation_of_school eos ON s.student_id = eos.student_id";
         int pageIndex = (curPage - 1) * pageSize;
         return teacherMapper.selectAllStuBypageWithTeacher(student_name,teacher_id,sql, pageIndex,pageSize);
     }

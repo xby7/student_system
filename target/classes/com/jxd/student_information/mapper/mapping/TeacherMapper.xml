@@ -6,10 +6,10 @@
        ${sql}
         <where>
             <if test="teacher_id != 0">
-                f.teacher_id = #{teacher_id}
+                teacher_id = #{teacher_id}
             </if>
             <if test="student_name != null and student_name != ''">
-                and f.student_name like concat('%',#{student_name},'%')
+                and student_name like concat('%',#{student_name},'%')
             </if>
                 and isdeleted = 1
         </where>
@@ -22,10 +22,10 @@
         ${sql}
         <where>
             <if test="teacher_id != 0">
-                f.teacher_id = #{teacher_id}
+                teacher_id = #{teacher_id}
             </if>
             <if test="student_name != null and student_name != ''">
-                and f.student_name like concat('%',#{student_name},'%')
+                and student_name like concat('%',#{student_name},'%')
             </if>
                 and isdeleted = 1
         </where>

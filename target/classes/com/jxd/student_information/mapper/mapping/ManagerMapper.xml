@@ -43,10 +43,10 @@
                 and student_name like concat('%',#{studentName},'%')
             </if>
             <if test="periodNo != 0">
-                and q_period = #{periodNo}
+                and qs.period_no = #{periodNo}
             </if>
             <if test="periodNo != 0">
-                and e_period = #{periodNo}
+                and eod.period_no = #{periodNo}
             </if>
                 and isdeleted = 1
         </where>
@@ -66,10 +66,10 @@
                 and student_name like concat('%',#{studentName},'%')
             </if>
             <if test="periodNo != 0">
-                and q_period = #{periodNo}
+                and qs.period_no = #{periodNo}
             </if>
             <if test="periodNo != 0">
-                and e_period = #{periodNo}
+                and eod.period_no = #{periodNo}
             </if>
                 and isdeleted = 1
         </where>

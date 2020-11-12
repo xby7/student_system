@@ -52,25 +52,16 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
         //获取动态拼接sql
         List<String> dynamicSequence = managerMapper.getSequenceWithManager();
         //手动与固定列拼接
-        String sql = "SELECT e.student_id,student_name,manager_id,score,quality_name,e.overall_score dept," +
-                "evaluation_form_dept,eos.overall_score school,q_period,e_period,isdeleted," +
+        String sql = "SELECT s.student_id,student_name,sex,graduate_school,native_place,score,quality_name," +
+                "eod.overall_score dept,evaluation_form_dept,eos.overall_score school,evaluation_form_school," +
                 dynamicSequence.get(dynamicSequence.size() - 1) +
-                " FROM(" +
-                " SELECT d.student_id,student_name,manager_id,score,quality_name,overall_score," +
-                "evaluation_form_dept,d.period_no q_period,eod.period_no e_period,isdeleted" +
-                " FROM(" +
-                " SELECT c.student_id,student_name,manager_id,score,quality_name,period_no,isdeleted" +
-                " FROM(" +
-                " SELECT b.student_id,student_name,manager_id,score,quality_id,period_no,isdeleted" +
-                " FROM(" +
-                " SELECT student_id,student_name,manager_id,isdeleted" +
-                " FROM(" +
-                " SELECT student_id, student_name, d.dept_no,isdeleted FROM student s LEFT JOIN dept d ON d.dept_no = s.dept_no ) a" +
-                " LEFT JOIN manager m ON a.dept_no = m.dept_no ) b" +
-                " LEFT JOIN quality_score qs ON qs.student_id = b.student_id ) c" +
-                " LEFT JOIN quality q ON q.quality_id = c.quality_id ) d" +
-                " LEFT JOIN evaluation_of_dept eod ON eod.student_id = d.student_id ) e" +
-                " LEFT JOIN evaluation_of_school eos ON eos.student_id = e.student_id ";
+                " FROM student s" +
+                " LEFT JOIN dept d ON s.dept_no = d.dept_no" +
+                " LEFT JOIN manager m ON m.dept_no = d.dept_no" +
+                " LEFT JOIN quality_score qs ON qs.student_id = s.student_id" +
+                " LEFT JOIN quality q ON q.quality_id = qs.quality_id" +
+                " LEFT JOIN evaluation_of_dept eod ON eod.student_id = s.student_id" +
+                " LEFT JOIN evaluation_of_school eos ON eos.student_id = s.student_id";
         int pageIndex = (curPage - 1) * pageSize;
         return managerMapper.selectAllStuBypageWithManager(studentName,managerId,periodNo,sql,pageIndex,pageSize);
     }
@@ -81,25 +72,16 @@ public class ManagerServiceImpl extends ServiceImpl<IManagerMapper, Manager> imp
         //获取动态拼接sql
         List<String> dynamicSequence = managerMapper.getSequenceWithManager();
         //手动与固定列拼接
-        String sql = "SELECT e.student_id,student_name,manager_id,score,quality_name,e.overall_score dept," +
-                "evaluation_form_dept,eos.overall_score school,q_period,e_period,isdeleted," +
+        String sql = "SELECT s.student_id,student_name,sex,graduate_school,native_place,score,quality_name," +
+                "eod.overall_score dept,evaluation_form_dept,eos.overall_score school,evaluation_form_school," +
                 dynamicSequence.get(dynamicSequence.size() - 1) +
-                " FROM(" +
-                " SELECT d.student_id,student_name,manager_id,score,quality_name,overall_score," +
-                "evaluation_form_dept,d.period_no q_period,eod.period_no e_period,isdeleted" +
-                " FROM(" +
-                " SELECT c.student_id,student_name,manager_id,score,quality_name,period_no,isdeleted" +
-                " FROM(" +
-                " SELECT b.student_id,student_name,manager_id,score,quality_id,period_no,isdeleted" +
-                " FROM(" +
-                " SELECT student_id,student_name,manager_id,isdeleted" +
-                " FROM(" +
-                " SELECT student_id, student_name, d.dept_no,isdeleted FROM student s LEFT JOIN dept d ON d.dept_no = s.dept_no ) a" +
-                " LEFT JOIN manager m ON a.dept_no = m.dept_no ) b" +
-                " LEFT JOIN quality_score qs ON qs.student_id = b.student_id ) c" +
-                " LEFT JOIN quality q ON q.quality_id = c.quality_id ) d" +
-                " LEFT JOIN evaluation_of_dept eod ON eod.student_id = d.student_id ) e" +
-                " LEFT JOIN evaluation_of_school eos ON eos.student_id = e.student_id ";
+                " FROM student s" +
+                " LEFT JOIN dept d ON s.dept_no = d.dept_no" +
+                " LEFT JOIN manager m ON m.dept_no = d.dept_no" +
+                " LEFT JOIN quality_score qs ON qs.student_id = s.student_id" +
+                " LEFT JOIN quality q ON q.quality_id = qs.quality_id" +
+                " LEFT JOIN evaluation_of_dept eod ON eod.student_id = s.student_id" +
+                " LEFT JOIN evaluation_of_school eos ON eos.student_id = s.student_id";
 
         return managerMapper.selectAllStuTotalsWithManager(studentName,managerId,periodNo,sql);
     }
